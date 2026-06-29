@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;700&display=swap');
 
 body {
-    background: linear-gradient(135deg, #e0f2fe 0%, #fae8ff 100%);
+    background: linear-gradient(135deg, #a1c0d4 0%, #fae8ff 100%);
     background-attachment: fixed;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: #334155;
@@ -11,6 +11,11 @@ body {
     min-height: 100vh;
     margin: 0;
     padding: 20px;
+
+    margin: 0;
+    height: 100vh;      /* Force la page à faire exactement la hauteur de l'écran */
+    width: 100vw;       /* Force la page à faire exactement la largeur de l'écran */
+    overflow: hidden;   /* Coupe et rend invisible tout ce qui dépasse, empêche le scroll */
 }
 
 .page-title-container {
@@ -113,13 +118,17 @@ body {
 }
 
 
-/* La boîte qui contient le dessin */
+
+
+
+/* --- Remplace ou ajoute cette partie pour la zone de dessin --- */
+
 .drawing-box {
     background: linear-gradient(to bottom, #f0fdfa 0%, #f0f9ff 100%);
     color: #0f172a;
     border: 2px solid #e2e8f0;
-    border-top: 4px solid #38bdf8; /* Ligne bleue vive en haut */
-    padding: 20px;
+    border-top: 4px solid #38bdf8;
+    padding: 15px;
     width: 100%;
     box-sizing: border-box;
     text-align: center;
@@ -129,21 +138,59 @@ body {
 
 .drawing-box h3 {
     margin-top: 0;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
     font-size: 18px;
     color: #0284c7;
 }
 
-/* Le carré blanc pour dessiner */
+/* Barre d'outils style Frutiger Aero plat */
+.toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    background-color: #ffffff;
+    border: 1px solid #cbd5e1;
+    padding: 8px;
+    margin-bottom: 10px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.tool-group {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.tool-group input[type="range"] {
+    width: 60px;
+}
+
+.tool-btn {
+    background: #f1f5f9;
+    border: 1px solid #cbd5e1;
+    padding: 4px 8px;
+    font-size: 12px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 0 !important;
+}
+.tool-btn:hover {
+    background: #e2e8f0;
+}
+
+/* Le Canvas */
 #paintCanvas {
     background-color: #ffffff;
     border: 2px solid #cbd5e1;
-    cursor: crosshair; /* Curseur en forme de croix */
+    cursor: crosshair;
     display: block;
     margin: 0 auto 15px auto;
+    max-width: 100%;
 }
 
-/* Alignement des boutons sous le canvas */
 .canvas-buttons {
     display: flex;
     gap: 10px;
@@ -151,16 +198,14 @@ body {
 
 .canvas-btn {
     flex: 1;
-    padding: 10px;
+    padding: 12px;
     font-weight: bold;
     font-size: 14px;
     border: 1px solid #cbd5e1;
     cursor: pointer;
     border-radius: 0 !important;
-    transition: background-color 0.2s;
 }
 
-/* Bouton effacer */
 .btn-clear {
     background-color: #f1f5f9;
     color: #64748b;
@@ -169,13 +214,143 @@ body {
     background-color: #e2e8f0;
 }
 
-/* Bouton sauvegarder */
 .btn-save {
     background: linear-gradient(to bottom, #f472b6 0%, #db2777 100%);
     color: #ffffff;
     border: 1px solid #be185d;
     border-top: 2px solid #fbcfe8;
+    text-shadow: 0 1px 1px rgba(0,0,0,0.2);
 }
 .btn-save:hover {
     background: linear-gradient(to bottom, #fbcfe8 0%, #db2777 100%);
+}
+
+
+
+/* Classe pour cacher la boîte de dessin */
+.hidden {
+    display: none !important;
+}
+
+/* Style spécifique du bouton qui ouvre le dessin (Style rose pour changer du bleu) */
+.toggle-btn {
+    background: linear-gradient(to bottom, #f472b6 0%, #db2777 100%) !important;
+    border: 1px solid #be185d !important;
+    border-top: 2px solid #fbcfe8 !important;
+}
+.toggle-btn:hover {
+    background: linear-gradient(to bottom, #fbcfe8 0%, #db2777 100%) !important;
+}
+
+/* --- À ajouter à la fin de style.css --- */
+
+/* Style pour le bouton quand il devient vert */
+.btn-green {
+    background: linear-gradient(to bottom, #4ade80 0%, #16a34a 100%) !important;
+    border: 1px solid #15803d !important;
+    border-top: 2px solid #bbf7d0 !important;
+    color: #ffffff !important;
+}
+.btn-green:hover {
+    background: linear-gradient(to bottom, #bbf7d0 0%, #16a34a 100%) !important;
+}
+
+
+
+/* Bouton style Aqua Rouge / Ruby Glossy */
+.aero-button[data-style="red"] {
+    background: linear-gradient(to bottom, #f87171 0%, #dc2626 100%);
+    color: #ffffff; /* Texte blanc pour ressortir sur le rouge */
+    border: 1px solid #b91c1c;
+    border-top: 2px solid #fca5a5; /* Reflet de lumière sur le dessus */
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 4px 10px rgba(220, 38, 38, 0.2);
+}
+
+/* Effet au survol du bouton rouge */
+.aero-button[data-style="red"]:hover {
+    background: linear-gradient(to bottom, #fca5a5 0%, #b91c1c 100%);
+    box-shadow: 0 6px 14px rgba(220, 38, 38, 0.3);
+}
+
+/* Bouton style Aqua Violet / Améthyste Glossy */
+.aero-button[data-style="purple"] {
+    background: linear-gradient(to bottom, #c084fc 0%, #9333ea 100%);
+    color: #ffffff;
+    border: 1px solid #7e22ce;
+    border-top: 2px solid #e9d5ff; /* Reflet de lumière sur le dessus */
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 4px 10px rgba(147, 51, 234, 0.2);
+}
+
+/* Effet au survol du bouton violet */
+.aero-button[data-style="purple"]:hover {
+    background: linear-gradient(to bottom, #e9d5ff 0%, #7e22ce 100%);
+    box-shadow: 0 6px 14px rgba(147, 51, 234, 0.3);
+}
+
+/* Bouton style Aqua Gris / Métal Glossy */
+.aero-button[data-style="gray"] {
+    background: linear-gradient(to bottom, #cbd5e1 0%, #64748b 100%);
+    color: #ffffff;
+    border: 1px solid #475569;
+    border-top: 2px solid #f1f5f9; /* Reflet de lumière sur le dessus */
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 4px 10px rgba(100, 116, 139, 0.2);
+}
+
+/* Effet au survol du bouton gris */
+.aero-button[data-style="gray"]:hover {
+    background: linear-gradient(to bottom, #f1f5f9 0%, #475569 100%);
+    box-shadow: 0 6px 14px rgba(100, 116, 139, 0.3);
+}
+
+
+
+
+/* Nettoyage du profil */
+#profileContent {
+    position: relative;
+    width: 100%;
+    max-width: 360px;
+    box-sizing: border-box;
+}
+
+/* Style de la bio-box mis à jour avec ton fond GIF */
+.bio-box {
+    background-image: url('bubble-pixel-background.gif');
+    background-size: cover;
+    background-position: center;
+    color: #0f172a;
+    border: 2px solid #e2e8f0;
+    border-top: 4px solid #f472b6;
+    padding: 25px;
+    width: 100%;
+    box-sizing: border-box;
+    text-align: center;
+    box-shadow: 0 8px 20px rgba(15, 23, 42, 0.08);
+    border-radius: 0 !important; /* On garde les angles bien droits */
+    
+    position: relative; /* TRÈS IMPORTANT pour caler les stickers à l'intérieur */
+}
+
+/* Style commun pour les stickers Bubble dans la boîte */
+.sticker-bubble {
+    position: absolute;
+    width: 50px; /* Aligne la taille selon tes préférences */
+    height: auto;
+    z-index: 10;
+    pointer-events: none;
+}
+
+/* Position : À cheval sur le coin HAUT à droite */
+.bubble-bio-top {
+    top: -25px;     /* Moitié de la hauteur du sticker vers le haut */
+    right: -25px;   /* Moitié de la largeur du sticker vers la droite */
+}
+
+/* Position : À cheval sur le coin BAS à droite */
+.bubble-bio-bottom {
+    bottom: -25px;  /* Moitié de la hauteur du sticker vers le bas */
+    right: -25px;   /* Moitié de la largeur du sticker vers la droite */
 }

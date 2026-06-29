@@ -10,11 +10,11 @@
 
 <body>
 
-    <header class="page-title-container">
-        <h1 class="page-title">AmaiSharkyuu's<br>strawpage</h1>
-    </header>
+    <div id="profileContent" class="container">
+        <header class="page-title-container">
+            <h1 class="page-title">AmaiSharkyuu's<br>strawpage</h1>
+        </header>
 
-    <div class="container">
         <img class="avatar" src="https://tr.rbxcdn.com/30DAY-Avatar-838CD871E56EAFF8FCAAD16A2689A6D9-Png/720/720/Avatar/png/noFilter" alt="Roblox Avatar">
         
         <div class="bio-box">
@@ -23,20 +23,60 @@
             <div class="line">💬 Pronouns : Any</div>
             <div class="line">🏳️‍⚧️ Trans Girl, lesbian</div>
             <div class="line">♾️ Autistic</div>
+
+            <img src="bubble-tadc.gif" class="sticker-bubble bubble-bio-bottom" alt="Bubble Sticker">
         </div>
 
-        <div class="drawing-box">
+        <a class="aero-button" data-style="red" href="/Characters/">
+            ⭐ My Favorite Characters
+        </a>
+
+        <a class="aero-button" data-style="purple" href="/Interests/">
+            ✨ Interests
+        </a>
+
+        <a class="aero-button" data-style="gray" href="/HateList/">
+            ❌ People I HATE
+        </a>
+
+        
+    </div>
+    <br>
+    <div class="container">
+        <button id="toggleDrawingBtn" class="aero-button toggle-btn">
+            🎨 Open Drawing Board
+        </button>
+
+        <div id="drawingBox" class="drawing-box hidden">
             <h3>Draw me something! ✨</h3>
-            <canvas id="paintCanvas" width="300" height="250"></canvas>
+            
+            <div class="toolbar">
+                <div class="tool-group">
+                    <label>🎨</label>
+                    <input type="color" id="colorPicker" value="#db2777">
+                </div>
+                
+                <div class="tool-group">
+                    <label>✏️ Size</label>
+                    <input type="range" id="sizePicker" min="2" max="20" value="5">
+                </div>
+
+                <div class="tool-group">
+                    <button id="textBtn" class="tool-btn">🔤 Text</button>
+                </div>
+
+                <div class="tool-group">
+                    <button id="stickerBtn" class="tool-btn">⭐ Sticker</button>
+                </div>
+            </div>
+
+            <canvas id="paintCanvas" width="320" height="250"></canvas>
+            
             <div class="canvas-buttons">
                 <button id="clearBtn" class="canvas-btn btn-clear">Clear</button>
-                <button id="saveBtn" class="canvas-btn btn-save">Download & Send me</button>
+                <button id="sendDiscordBtn" class="canvas-btn btn-save">Send to Discord! 🚀</button>
             </div>
         </div>
-
-        <a class="aero-button" href="https://www.buildcores.com/setup/67cbwlTwv?view=build" target="_blank">
-            💻 my computer build
-        </a>
     </div>
 
     <script src="script.js"></script>
