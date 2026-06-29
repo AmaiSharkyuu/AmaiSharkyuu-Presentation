@@ -5,7 +5,364 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AmaiSharkyuu Strawpage</title>
-    <link rel="stylesheet" href="style.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;700&display=swap');
+
+body {
+    background: linear-gradient(135deg, #a1c0d4 0%, #fae8ff 100%);
+    background-attachment: fixed;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #334155;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px;
+
+    margin: 0;
+    height: 100vh;      /* Force la page à faire exactement la hauteur de l'écran */
+    width: 100vw;       /* Force la page à faire exactement la largeur de l'écran */
+    overflow: hidden;   /* Coupe et rend invisible tout ce qui dépasse, empêche le scroll */
+}
+
+.page-title-container {
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 30px;
+    width: 100%;
+}
+
+.page-title {
+    font-size: 28px;
+    font-weight: 700;
+    color: #0369a1;
+    text-shadow: 1px 1px 0px #ffffff;
+    margin: 0;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 360px;
+    width: 100%;
+    gap: 20px;
+}
+
+.avatar {
+    width: 140px;
+    height: 140px;
+    object-fit: cover;
+    border: 3px solid #ffffff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    border-radius: 0 !important;
+}
+
+.bio-box {
+    background: linear-gradient(to bottom, #fdf4ff 0%, #f0fdfa 100%);
+    color: #0f172a;
+    border: 2px solid #e2e8f0;
+    border-top: 4px solid #f472b6;
+    padding: 25px;
+    width: 100%;
+    box-sizing: border-box;
+    text-align: center;
+    box-shadow: 0 8px 20px rgba(15, 23, 42, 0.08);
+    border-radius: 0 !important;
+}
+
+.bio-box h2 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-size: 22px;
+    color: #db2777;
+}
+
+.line {
+    margin-bottom: 10px;
+    font-size: 15px;
+    font-weight: 500;
+}
+.line:last-child {
+    margin-bottom: 0;
+}
+
+.aero-button {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    background: linear-gradient(to bottom, #38bdf8 0%, #0284c7 100%);
+    color: #ffffff;
+    border: 1px solid #0369a1;
+    border-top: 2px solid #7dd3fc;
+    text-decoration: none;
+    padding: 14px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 15px;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 4px 10px rgba(2, 132, 199, 0.2);
+    transition: all 0.2s ease;
+    border-radius: 0 !important;
+}
+
+.aero-button:hover {
+    background: linear-gradient(to bottom, #7dd3fc 0%, #0369a1 100%);
+    box-shadow: 0 6px 14px rgba(2, 132, 199, 0.3);
+}
+
+/* Bouton secondaire (Rose) pour le bouton retour */
+.secondary-button {
+    background: linear-gradient(to bottom, #f472b6 0%, #db2777 100%);
+    border: 1px solid #be185d;
+    border-top: 2px solid #fbcfe8;
+    box-shadow: 0 4px 10px rgba(219, 39, 119, 0.2);
+}
+
+.secondary-button:hover {
+    background: linear-gradient(to bottom, #fbcfe8 0%, #db2777 100%);
+    box-shadow: 0 6px 14px rgba(219, 39, 119, 0.3);
+}
+
+
+
+
+
+/* --- Remplace ou ajoute cette partie pour la zone de dessin --- */
+
+.drawing-box {
+    background: linear-gradient(to bottom, #f0fdfa 0%, #f0f9ff 100%);
+    color: #0f172a;
+    border: 2px solid #e2e8f0;
+    border-top: 4px solid #38bdf8;
+    padding: 15px;
+    width: 100%;
+    box-sizing: border-box;
+    text-align: center;
+    box-shadow: 0 8px 20px rgba(15, 23, 42, 0.08);
+    border-radius: 0 !important;
+}
+
+.drawing-box h3 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 18px;
+    color: #0284c7;
+}
+
+/* Barre d'outils style Frutiger Aero plat */
+.toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    background-color: #ffffff;
+    border: 1px solid #cbd5e1;
+    padding: 8px;
+    margin-bottom: 10px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.tool-group {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.tool-group input[type="range"] {
+    width: 60px;
+}
+
+.tool-btn {
+    background: #f1f5f9;
+    border: 1px solid #cbd5e1;
+    padding: 4px 8px;
+    font-size: 12px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 0 !important;
+}
+.tool-btn:hover {
+    background: #e2e8f0;
+}
+
+/* Le Canvas */
+#paintCanvas {
+    background-color: #ffffff;
+    border: 2px solid #cbd5e1;
+    cursor: crosshair;
+    display: block;
+    margin: 0 auto 15px auto;
+    max-width: 100%;
+}
+
+.canvas-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.canvas-btn {
+    flex: 1;
+    padding: 12px;
+    font-weight: bold;
+    font-size: 14px;
+    border: 1px solid #cbd5e1;
+    cursor: pointer;
+    border-radius: 0 !important;
+}
+
+.btn-clear {
+    background-color: #f1f5f9;
+    color: #64748b;
+}
+.btn-clear:hover {
+    background-color: #e2e8f0;
+}
+
+.btn-save {
+    background: linear-gradient(to bottom, #f472b6 0%, #db2777 100%);
+    color: #ffffff;
+    border: 1px solid #be185d;
+    border-top: 2px solid #fbcfe8;
+    text-shadow: 0 1px 1px rgba(0,0,0,0.2);
+}
+.btn-save:hover {
+    background: linear-gradient(to bottom, #fbcfe8 0%, #db2777 100%);
+}
+
+
+
+/* Classe pour cacher la boîte de dessin */
+.hidden {
+    display: none !important;
+}
+
+/* Style spécifique du bouton qui ouvre le dessin (Style rose pour changer du bleu) */
+.toggle-btn {
+    background: linear-gradient(to bottom, #f472b6 0%, #db2777 100%) !important;
+    border: 1px solid #be185d !important;
+    border-top: 2px solid #fbcfe8 !important;
+}
+.toggle-btn:hover {
+    background: linear-gradient(to bottom, #fbcfe8 0%, #db2777 100%) !important;
+}
+
+/* --- À ajouter à la fin de style.css --- */
+
+/* Style pour le bouton quand il devient vert */
+.btn-green {
+    background: linear-gradient(to bottom, #4ade80 0%, #16a34a 100%) !important;
+    border: 1px solid #15803d !important;
+    border-top: 2px solid #bbf7d0 !important;
+    color: #ffffff !important;
+}
+.btn-green:hover {
+    background: linear-gradient(to bottom, #bbf7d0 0%, #16a34a 100%) !important;
+}
+
+
+
+/* Bouton style Aqua Rouge / Ruby Glossy */
+.aero-button[data-style="red"] {
+    background: linear-gradient(to bottom, #f87171 0%, #dc2626 100%);
+    color: #ffffff; /* Texte blanc pour ressortir sur le rouge */
+    border: 1px solid #b91c1c;
+    border-top: 2px solid #fca5a5; /* Reflet de lumière sur le dessus */
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 4px 10px rgba(220, 38, 38, 0.2);
+}
+
+/* Effet au survol du bouton rouge */
+.aero-button[data-style="red"]:hover {
+    background: linear-gradient(to bottom, #fca5a5 0%, #b91c1c 100%);
+    box-shadow: 0 6px 14px rgba(220, 38, 38, 0.3);
+}
+
+/* Bouton style Aqua Violet / Améthyste Glossy */
+.aero-button[data-style="purple"] {
+    background: linear-gradient(to bottom, #c084fc 0%, #9333ea 100%);
+    color: #ffffff;
+    border: 1px solid #7e22ce;
+    border-top: 2px solid #e9d5ff; /* Reflet de lumière sur le dessus */
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 4px 10px rgba(147, 51, 234, 0.2);
+}
+
+/* Effet au survol du bouton violet */
+.aero-button[data-style="purple"]:hover {
+    background: linear-gradient(to bottom, #e9d5ff 0%, #7e22ce 100%);
+    box-shadow: 0 6px 14px rgba(147, 51, 234, 0.3);
+}
+
+/* Bouton style Aqua Gris / Métal Glossy */
+.aero-button[data-style="gray"] {
+    background: linear-gradient(to bottom, #cbd5e1 0%, #64748b 100%);
+    color: #ffffff;
+    border: 1px solid #475569;
+    border-top: 2px solid #f1f5f9; /* Reflet de lumière sur le dessus */
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 4px 10px rgba(100, 116, 139, 0.2);
+}
+
+/* Effet au survol du bouton gris */
+.aero-button[data-style="gray"]:hover {
+    background: linear-gradient(to bottom, #f1f5f9 0%, #475569 100%);
+    box-shadow: 0 6px 14px rgba(100, 116, 139, 0.3);
+}
+
+
+
+
+/* Nettoyage du profil */
+#profileContent {
+    position: relative;
+    width: 100%;
+    max-width: 360px;
+    box-sizing: border-box;
+}
+
+/* Style de la bio-box mis à jour avec ton fond GIF */
+.bio-box {
+    background-image: url('bubble-pixel-background.gif');
+    background-size: cover;
+    background-position: center;
+    color: #0f172a;
+    border: 2px solid #e2e8f0;
+    border-top: 4px solid #f472b6;
+    padding: 25px;
+    width: 100%;
+    box-sizing: border-box;
+    text-align: center;
+    box-shadow: 0 8px 20px rgba(15, 23, 42, 0.08);
+    border-radius: 0 !important; /* On garde les angles bien droits */
+    
+    position: relative; /* TRÈS IMPORTANT pour caler les stickers à l'intérieur */
+}
+
+/* Style commun pour les stickers Bubble dans la boîte */
+.sticker-bubble {
+    position: absolute;
+    width: 50px; /* Aligne la taille selon tes préférences */
+    height: auto;
+    z-index: 10;
+    pointer-events: none;
+}
+
+/* Position : À cheval sur le coin HAUT à droite */
+.bubble-bio-top {
+    top: -25px;     /* Moitié de la hauteur du sticker vers le haut */
+    right: -25px;   /* Moitié de la largeur du sticker vers la droite */
+}
+
+/* Position : À cheval sur le coin BAS à droite */
+.bubble-bio-bottom {
+    bottom: -25px;  /* Moitié de la hauteur du sticker vers le bas */
+    right: -25px;   /* Moitié de la largeur du sticker vers la droite */
+}
+    </style>
 </head>
 
 <body>
@@ -85,7 +442,192 @@
         </div>
     </div>
 
-    <script src="script.js"></script>
+    <script>
+        const toggleDrawingBtn = document.getElementById('toggleDrawingBtn');
+        const drawingBox = document.getElementById('drawingBox');
+        const profileContent = document.getElementById('profileContent');
+
+        toggleDrawingBtn.addEventListener('click', () => {
+            drawingBox.classList.toggle('hidden');
+            profileContent.classList.toggle('hidden'); // Cache ou montre tout le profil
+            
+            if (drawingBox.classList.contains('hidden')) {
+                toggleDrawingBtn.innerText = "🎨 Open Drawing Board";
+                toggleDrawingBtn.classList.remove('btn-green'); // Retire le vert
+            } else {
+                toggleDrawingBtn.innerText = "❌ Close Drawing Board";
+                toggleDrawingBtn.classList.add('btn-green'); // Devient vert
+            }
+        });
+
+        // --- LE RESTE DE TON CODE EXISTANT (DESSIN + WEBHOOK) EN DESSOUS ---
+
+
+        // REMPLACE CETTE URL PAR TON LIEN DE WEBHOOK DISCORD
+        const DISCORD_WEBHOOK_URL = 'https://discord.com/api/webhooks/1521158303479238818/-_CcltnnV1ve9VG_PxVKyTDD3BFMkGczkitnQAHaxrHhzbFFgh12GAUdiBf5zRuQUgyZ';
+
+        const canvas = document.getElementById('paintCanvas');
+        const ctx = canvas.getContext('2d');
+        const colorPicker = document.getElementById('colorPicker');
+        const sizePicker = document.getElementById('sizePicker');
+        const textBtn = document.getElementById('textBtn');
+        const stickerBtn = document.getElementById('stickerBtn');
+        const clearBtn = document.getElementById('clearBtn');
+        const sendDiscordBtn = document.getElementById('sendDiscordBtn');
+
+        let isDrawing = false;
+        let currentMode = 'draw'; // 'draw', 'text', 'sticker'
+
+        // Activer le mode Dessin par défaut au changement d'outils de couleur/taille
+        colorPicker.addEventListener('input', () => currentMode = 'draw');
+        sizePicker.addEventListener('input', () => currentMode = 'draw');
+
+        textBtn.addEventListener('click', () => {
+            currentMode = 'text';
+            alert("Click anywhere on the canvas to add text!");
+        });
+
+        stickerBtn.addEventListener('click', () => {
+            currentMode = 'sticker';
+            alert("Click anywhere on the canvas to place a sticker!");
+        });
+
+        // Fonctions principales
+        function getCoordinates(e) {
+            const rect = canvas.getBoundingClientRect();
+            const x = (e.clientX || e.touches[0].clientX) - rect.left;
+            const y = (e.clientY || e.touches[0].clientY) - rect.top;
+            return { x, y };
+        }
+
+        function handleCanvasClick(e) {
+            const coords = getCoordinates(e);
+
+            if (currentMode === 'text') {
+                const text = prompt("Enter your text:");
+                if (text) {
+                    ctx.fillStyle = colorPicker.value;
+                    ctx.font = `${sizePicker.value * 3}px 'Segoe UI'`;
+                    ctx.fillText(text, coords.x, coords.y);
+                }
+                currentMode = 'draw';
+            } else if (currentMode === 'sticker') {
+                const stickers = ["⭐", "💖", "🍓", "🦈", "👾", "🩹", "🐱"];
+                const randomSticker = stickers[Math.floor(Math.random() * stickers.length)];
+                ctx.font = `${sizePicker.value * 4}px Arial`;
+                ctx.textAlign = "center";
+                ctx.textBaseline = "middle";
+                ctx.fillText(randomSticker, coords.x, coords.y);
+                currentMode = 'draw';
+            }
+        }
+
+        // Événements pour dessiner
+        canvas.addEventListener('mousedown', (e) => {
+            if (currentMode !== 'draw') {
+                handleCanvasClick(e);
+                return;
+            }
+            isDrawing = true;
+            ctx.strokeStyle = colorPicker.value;
+            ctx.lineWidth = sizePicker.value;
+            ctx.lineCap = 'square';
+            
+            const coords = getCoordinates(e);
+            ctx.beginPath();
+            ctx.moveTo(coords.x, coords.y);
+        });
+
+        canvas.addEventListener('mousemove', (e) => {
+            if (!isDrawing || currentMode !== 'draw') return;
+            const coords = getCoordinates(e);
+            ctx.lineTo(coords.x, coords.y);
+            ctx.stroke();
+        });
+
+        canvas.addEventListener('mouseup', () => isDrawing = false);
+        canvas.addEventListener('mouseout', () => isDrawing = false);
+
+        // Support Mobile (Tactile)
+        canvas.addEventListener('touchstart', (e) => {
+            if (currentMode !== 'draw') {
+                handleCanvasClick(e);
+                return;
+            }
+            isDrawing = true;
+            ctx.strokeStyle = colorPicker.value;
+            ctx.lineWidth = sizePicker.value;
+            const coords = getCoordinates(e);
+            ctx.beginPath();
+            ctx.moveTo(coords.x, coords.y);
+        });
+        canvas.addEventListener('touchmove', (e) => {
+            if (!isDrawing || currentMode !== 'draw') return;
+            const coords = getCoordinates(e);
+            ctx.lineTo(coords.x, coords.y);
+            ctx.stroke();
+        });
+        canvas.addEventListener('touchend', () => isDrawing = false);
+
+        // Clear
+        clearBtn.addEventListener('click', () => {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+        });
+
+        // Envoi vers Discord par Webhook avec fond blanc forcé
+        sendDiscordBtn.addEventListener('click', () => {
+            if (DISCORD_WEBHOOK_URL === 'TON_URL_WEBHOOK_ICI') {
+                alert("Oops! You need to configure your Discord Webhook URL in script.js first.");
+                return;
+            }
+
+            sendDiscordBtn.innerText = "Sending... ⌛";
+            sendDiscordBtn.disabled = true;
+
+            // 1. Créer un canvas temporaire pour fusionner le dessin sur un fond blanc
+            const tempCanvas = document.createElement('canvas');
+            tempCanvas.width = canvas.width;
+            tempCanvas.height = canvas.height;
+            const tempCtx = tempCanvas.getContext('2d');
+
+            // 2. Remplir le fond en blanc
+            tempCtx.fillStyle = '#ffffff';
+            tempCtx.fillRect(0, 0, tempCanvas.width, tempCanvas.height);
+
+            // 3. Dessiner l'œuvre de l'utilisateur par-dessus le fond blanc
+            tempCtx.drawImage(canvas, 0, 0);
+
+            // 4. Convertir et envoyer ce canvas temporaire
+            tempCanvas.toBlob((blob) => {
+                const formData = new FormData();
+                formData.append('file', blob, 'fanart.png');
+                formData.append('payload_json', JSON.stringify({
+                    content: "🎨 **New drawing received from your strawpage!**"
+                }));
+
+                fetch(DISCORD_WEBHOOK_URL, {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => {
+                    if (response.ok) {
+                        alert("Drawing successfully sent to Discord! 🎉");
+                        ctx.clearRect(0, 0, canvas.width, canvas.height); // Efface le canvas principal après envoi
+                    } else {
+                        alert("Failed to send drawing. Check your Webhook link.");
+                    }
+                })
+                .catch(err => {
+                    console.error(err);
+                    alert("An error occurred while sending.");
+                })
+                .finally(() => {
+                    sendDiscordBtn.innerText = "Send to Discord! 🚀";
+                    sendDiscordBtn.disabled = false;
+                });
+            }, 'image/png');
+        });
+    </script>
 
 </body>
 </html>
