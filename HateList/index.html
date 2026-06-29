@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>People I HATE - AmaiSharkyuu</title>
+    <style>
+        /* --- Style général avec la nouvelle image de fond --- */
+        body {
+            background: #586f8f;
+            background-size: fixed;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #334155;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 40px 20px;
+            box-sizing: border-box;
+        }
+
+        /* Conteneur principal (Strictement max-width 360px et angles droits) */
+        .hate-container {
+            width: 100%;
+            max-width: 360px;
+            background: #ffffff;
+            border: 2px solid #e2e8f0;
+            border-top: 4px solid #475569; /* Ligne du haut grise pour coller au thème Hate */
+            padding: 25px;
+            box-sizing: border-box;
+            box-shadow: 0 8px 20px rgba(15, 23, 42, 0.08);
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            border-radius: 0 !important;
+            position: relative; 
+        }
+
+        /* En-tête */
+        .page-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 12px;
+        }
+
+        .page-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #334155;
+            margin: 0;
+        }
+
+        /* Bouton Retour Gris Glossy (Angles droits) */
+        .back-btn {
+            background: linear-gradient(to bottom, #94a3b8 0%, #475569 100%);
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 14px;
+            padding: 6px 12px;
+            border: 1px solid #334155;
+            border-top: 2px solid #cbd5e1;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 4px 10px rgba(71, 85, 105, 0.2);
+            font-weight: bold;
+            border-radius: 0 !important;
+        }
+        .back-btn:hover {
+            background: linear-gradient(to bottom, #cbd5e1 0%, #334155 100%);
+        }
+
+        /* Wrapper pour les stickers */
+        .section-wrapper {
+            position: relative;
+            width: 100%;
+        }
+
+        /* Titre de la section (Couleur unie) */
+        .section-title {
+            font-size: 18px;
+            font-weight: 800;
+            color: #e11d48; /* Un rouge sombre pour le côté "Do not interact" */
+            margin: 0 0 8px 0;
+            text-align: left;
+            text-transform: uppercase;
+        }
+
+        /* Bulle d'information avec SCROLL */
+        .hate-bubble {
+            background: #e2e8f0; /* Gris clair un peu neutre/violacé */
+            border: 1px solid #cbd5e1;
+            padding: 15px;
+            height: 250px;       /* Assez grand pour tout lire */
+            overflow-y: scroll; 
+            box-sizing: border-box;
+            border-radius: 0 !important;
+        }
+
+        /* Liste à puces */
+        .hate-list {
+            list-style: square; 
+            padding-left: 20px;
+            margin: 0;
+        }
+
+        .hate-list li {
+            font-size: 14px;
+            font-weight: 700;
+            color: #334155;
+            margin-bottom: 12px;
+            line-height: 1.4;
+        }
+
+        /* --- STICKERS --- */
+        .sticker {
+            position: absolute;
+            z-index: 10;
+            pointer-events: none; 
+            user-select: none;
+            -webkit-user-select: none;
+        }
+
+        /* Position de l'emoji poing/pistolet */
+        .stk-emoji {
+            top: -15px;
+            right: -10px;
+            width: 45px;
+        }
+
+        /* Position du petit chat blanc */
+        .stk-cat {
+            bottom: -20px;
+            left: -20px;
+            width: 55px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="hate-container">
+        
+        <header class="page-header">
+            <h1 class="page-title">❌ DNI List</h1>
+            <a href="../" class="back-btn">⬅️ Back</a>
+        </header>
+
+        <div class="section-wrapper">
+            <h2 class="section-title">PEOPLE I HATE</h2>
+            
+            <img src="https://media.tenor.com/3ZWOaq1Y0nQAAAAj/cat.gif" alt="Cat" class="sticker stk-emoji" draggable="false">
+            
+            <div class="hate-bubble">
+                <ul class="hate-list">
+                    <li>Basic stuff : Pdfiles, homophobics, racists, transphobics</li>
+                    <li>Toxic people</li>
+                    <li>People who do Illegal things</li>
+                </ul>
+            </div>
+
+            <img src="https://media.tenor.com/GQAsycjoZG8AAAAj/scuba-scuba-cat.gif" alt="Cat" class="sticker stk-cat" draggable="false">
+        </div>
+
+    </div>
+
+</body>
+</html>
