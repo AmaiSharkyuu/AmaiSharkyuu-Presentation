@@ -1,0 +1,181 @@
+@import url('https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;700&display=swap');
+
+body {
+    background: linear-gradient(135deg, #e0f2fe 0%, #fae8ff 100%);
+    background-attachment: fixed;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #334155;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px;
+}
+
+.page-title-container {
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 30px;
+    width: 100%;
+}
+
+.page-title {
+    font-size: 28px;
+    font-weight: 700;
+    color: #0369a1;
+    text-shadow: 1px 1px 0px #ffffff;
+    margin: 0;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 360px;
+    width: 100%;
+    gap: 20px;
+}
+
+.avatar {
+    width: 140px;
+    height: 140px;
+    object-fit: cover;
+    border: 3px solid #ffffff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    border-radius: 0 !important;
+}
+
+.bio-box {
+    background: linear-gradient(to bottom, #fdf4ff 0%, #f0fdfa 100%);
+    color: #0f172a;
+    border: 2px solid #e2e8f0;
+    border-top: 4px solid #f472b6;
+    padding: 25px;
+    width: 100%;
+    box-sizing: border-box;
+    text-align: center;
+    box-shadow: 0 8px 20px rgba(15, 23, 42, 0.08);
+    border-radius: 0 !important;
+}
+
+.bio-box h2 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-size: 22px;
+    color: #db2777;
+}
+
+.line {
+    margin-bottom: 10px;
+    font-size: 15px;
+    font-weight: 500;
+}
+.line:last-child {
+    margin-bottom: 0;
+}
+
+.aero-button {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    background: linear-gradient(to bottom, #38bdf8 0%, #0284c7 100%);
+    color: #ffffff;
+    border: 1px solid #0369a1;
+    border-top: 2px solid #7dd3fc;
+    text-decoration: none;
+    padding: 14px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 15px;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 4px 10px rgba(2, 132, 199, 0.2);
+    transition: all 0.2s ease;
+    border-radius: 0 !important;
+}
+
+.aero-button:hover {
+    background: linear-gradient(to bottom, #7dd3fc 0%, #0369a1 100%);
+    box-shadow: 0 6px 14px rgba(2, 132, 199, 0.3);
+}
+
+/* Bouton secondaire (Rose) pour le bouton retour */
+.secondary-button {
+    background: linear-gradient(to bottom, #f472b6 0%, #db2777 100%);
+    border: 1px solid #be185d;
+    border-top: 2px solid #fbcfe8;
+    box-shadow: 0 4px 10px rgba(219, 39, 119, 0.2);
+}
+
+.secondary-button:hover {
+    background: linear-gradient(to bottom, #fbcfe8 0%, #db2777 100%);
+    box-shadow: 0 6px 14px rgba(219, 39, 119, 0.3);
+}
+
+
+/* La boîte qui contient le dessin */
+.drawing-box {
+    background: linear-gradient(to bottom, #f0fdfa 0%, #f0f9ff 100%);
+    color: #0f172a;
+    border: 2px solid #e2e8f0;
+    border-top: 4px solid #38bdf8; /* Ligne bleue vive en haut */
+    padding: 20px;
+    width: 100%;
+    box-sizing: border-box;
+    text-align: center;
+    box-shadow: 0 8px 20px rgba(15, 23, 42, 0.08);
+    border-radius: 0 !important;
+}
+
+.drawing-box h3 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-size: 18px;
+    color: #0284c7;
+}
+
+/* Le carré blanc pour dessiner */
+#paintCanvas {
+    background-color: #ffffff;
+    border: 2px solid #cbd5e1;
+    cursor: crosshair; /* Curseur en forme de croix */
+    display: block;
+    margin: 0 auto 15px auto;
+}
+
+/* Alignement des boutons sous le canvas */
+.canvas-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.canvas-btn {
+    flex: 1;
+    padding: 10px;
+    font-weight: bold;
+    font-size: 14px;
+    border: 1px solid #cbd5e1;
+    cursor: pointer;
+    border-radius: 0 !important;
+    transition: background-color 0.2s;
+}
+
+/* Bouton effacer */
+.btn-clear {
+    background-color: #f1f5f9;
+    color: #64748b;
+}
+.btn-clear:hover {
+    background-color: #e2e8f0;
+}
+
+/* Bouton sauvegarder */
+.btn-save {
+    background: linear-gradient(to bottom, #f472b6 0%, #db2777 100%);
+    color: #ffffff;
+    border: 1px solid #be185d;
+    border-top: 2px solid #fbcfe8;
+}
+.btn-save:hover {
+    background: linear-gradient(to bottom, #fbcfe8 0%, #db2777 100%);
+}
