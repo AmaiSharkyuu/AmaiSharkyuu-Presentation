@@ -9,21 +9,21 @@
         @import url('https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;700&display=swap');
 
 body {
+    margin: 0;
+    padding: 20px;
+    box-sizing: border-box;
+
     background: linear-gradient(135deg, #a1c0d4 0%, #fae8ff 100%);
     background-attachment: fixed;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: #334155;
+
     display: flex;
     flex-direction: column;
     align-items: center;
-    min-height: 100vh;
-    margin: 0;
-    padding: 20px;
 
-    margin: 0;
-    height: 100vh;      /* Force la page à faire exactement la hauteur de l'écran */
-    width: 100vw;       /* Force la page à faire exactement la largeur de l'écran */
-    overflow: hidden;   /* Coupe et rend invisible tout ce qui dépasse, empêche le scroll */
+    min-height: 100dvh; /* meilleur que 100vh sur téléphone */
+    overflow-x: hidden; /* bloque seulement le scroll horizontal */
 }
 
 .page-title-container {
