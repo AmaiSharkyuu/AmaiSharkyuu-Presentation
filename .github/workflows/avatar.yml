@@ -1,0 +1,83 @@
+name: Avatar Roblox
+
+# Récupère l'avatar Roblox actuel et le commite dans avatar.png.
+# Rien n'est commité si l'image n'a pas changé.
+
+on:
+  schedule:
+    # Tous les jours à 05h17 UTC (une heure creuse : les crons de GitHub
+    # sont souvent en retard aux heures rondes).
+    - cron: '17 5 * * *'
+  # Permet aussi de lancer la mise à jour à la main depuis l'onglet Actions.
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: avatar
+  cancel-in-progress: false
+
+jobs:
+  update-avatar:
+    runs-on: ubuntu-latest
+
+    env:
+      ROBLOX_USER_ID: '1957141708'
+
+    steps:
+      - name: Récupérer le dépôt
+        uses: actions/checkout@v4
+
+      - name: Demander l'URL de l'avatar à Roblox
+        id: thumb
+        run: |
+          set -euo pipefail
+
+          API="https://thumbnails.roblox.com/v1/users/avatar?userIds=${ROBLOX_USER_ID}&size=420x420&format=Png&isCircular=false"
+
+          RESPONSE=$(curl -sSf --retry 3 --retry-delay 5 --max-time 30 "$API")
+          echo "Réponse de l'API : $RESPONSE"
+
+          STATE=$(echo "$RESPONSE" | jq -r '.data[0].state // "Missing"')
+          if [ "$STATE" != "Completed" ]; then
+            echo "::error::La miniature n'est pas prête (état : $STATE). On réessaiera demain."
+            exit 1
+          fi
+
+          URL=$(echo "$RESPONSE" | jq -er '.data[0].imageUrl')
+          echo "url=$URL" >> "$GITHUB_OUTPUT"
+
+      - name: Télécharger l'image
+        run: |
+          set -euo pipefail
+          curl -sSf --retry 3 --retry-delay 5 --max-time 60 \
+               -o avatar.new.png "${{ steps.thumb.outputs.url }}"
+
+          # Garde-fou : on refuse un fichier vide ou qui n'est pas un PNG,
+          # pour ne jamais remplacer un avatar valide par une page d'erreur.
+          if [ ! -s avatar.new.png ]; then
+            echo "::error::Fichier vide, on abandonne."
+            exit 1
+          fi
+          if ! file avatar.new.png | grep -q 'PNG image data'; then
+            echo "::error::Ce n'est pas un PNG, on abandonne."
+            exit 1
+          fi
+
+          mv avatar.new.png avatar.png
+
+      - name: Commiter si l'avatar a changé
+        run: |
+          set -euo pipefail
+
+          if git diff --quiet -- avatar.png; then
+            echo "Avatar inchangé, rien à faire."
+            exit 0
+          fi
+
+          git config user.name  'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add avatar.png
+          git commit -m 'Mise à jour automatique de l avatar Roblox'
+          git push

@@ -2,219 +2,148 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#030d16">
+    <meta name="color-scheme" content="dark">
     <title>Interests - AmaiSharkyuu</title>
+    <link rel="stylesheet" href="../aero.css">
     <style>
-        /* --- Style général copié de ton accueil --- */
-        body {
-            background: #8fadc0;
-            background-attachment: fixed;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            color: #334155;
+        /* ---- Éléments propres à la page Interests ---- */
+
+        .page-header h1 {
+            color: var(--violet);
+            text-shadow: 0 0 14px rgba(177, 140, 255, 0.5);
+        }
+
+        .stack {
             display: flex;
             flex-direction: column;
-            align-items: center;
-            min-height: 100vh;
-            margin: 0;
-            padding: 40px 20px; /* Augmenté un peu pour laisser de la place aux stickers qui dépassent */
-            box-sizing: border-box;
+            gap: 22px;
         }
 
-        /* Conteneur principal (Strictement max-width 360px et angles droits) */
-        .interests-container {
-            width: 100%;
-            max-width: 360px;
-            background: #ffffff;
-            border: 2px solid #e2e8f0;
-            border-top: 4px solid #9333ea; /* Ligne du haut violette */
-            padding: 25px;
-            box-sizing: border-box;
-            box-shadow: 0 8px 20px rgba(15, 23, 42, 0.08);
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            border-radius: 0 !important;
-            position: relative; /* Indispensable pour caler les stickers */
-        }
-
-        /* En-tête */
-        .int-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 2px solid #e2e8f0;
-            padding-bottom: 12px;
-        }
-
-        .int-title {
-            font-size: 24px;
-            font-weight: 700;
-            color: #334155;
-            margin: 0;
-        }
-
-        /* Bouton Retour Violet (Angles droits) */
-        .back-btn {
-            background: linear-gradient(to bottom, #c084fc 0%, #9333ea 100%);
-            color: #ffffff;
-            text-decoration: none;
-            font-size: 14px;
-            padding: 6px 12px;
-            border: 1px solid #7e22ce;
-            border-top: 2px solid #e9d5ff;
-            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
-            box-shadow: 0 4px 10px rgba(147, 51, 234, 0.2);
-            font-weight: bold;
-            border-radius: 0 !important;
-        }
-        .back-btn:hover {
-            background: linear-gradient(to bottom, #e9d5ff 0%, #7e22ce 100%);
-        }
-
-        /* Conteneur de section pour isoler les stickers par bloc */
-        .section-wrapper {
-            position: relative;
-            width: 100%;
-        }
-
-        /* Titres des sections (Couleur unie, pas de dégradé) */
         .section-title {
-            font-size: 16px;
-            font-weight: 700;
-            color: #334155;
-            margin: 0 0 8px 0;
-            text-align: left;
+            color: var(--violet);
         }
 
-        /* Bulles d'intérêt avec SCROLL (Hauteur fixe et angles morts) */
-        .interest-bubble {
-            background: #cbd3fa;
-            border: 1px solid #b4bfe6;
-            padding: 12px;
-            height: 150px;       /* Hauteur fixe pour forcer le scroll */
-            overflow-y: scroll;  /* Active le scroll vertical */
-            box-sizing: border-box;
-            border-radius: 0 !important;
+        /* Teinte propre à chaque bulle, dans l'esprit Aero */
+        .bubble.tint-violet {
+            background-color: rgba(45, 20, 78, 0.6);
+            border-color: rgba(177, 140, 255, 0.35);
         }
 
-        /* Liste à puces */
-        .interest-list {
-            list-style: square; /* Puces carrées pour casser le côté arrondi */
-            padding-left: 20px;
-            margin: 0;
+        .bubble.tint-aqua {
+            background-color: rgba(6, 44, 62, 0.6);
+            border-color: rgba(79, 216, 255, 0.35);
         }
 
-        .interest-list li {
-            font-size: 14px;
-            font-weight: 600;
-            color: #334155; /* Même couleur uniforme que le reste */
-            margin-bottom: 6px;
+        .bubble.tint-pink {
+            background-color: rgba(70, 16, 52, 0.6);
+            border-color: rgba(255, 122, 209, 0.35);
         }
 
-        /* Bulle spéciale "Favs Artists" (Claire et scrollable aussi si besoin) */
-        .fav-bubble {
-            background: #dbeafe;
-            border: 1px solid #bfdbfe;
-            height: 130px;
-        }
+        /* ---- Stickers ---- */
 
-        /* --- STICKERS --- */
-        .sticker {
-            position: absolute;
-            z-index: 10;
-            pointer-events: none; /* Évite de bloquer les clics ou le scroll */
-            user-select: none;
-            -webkit-user-select: none;
-        }
-
-        /* Axolotl : En haut à droite du grand conteneur */
         .stk-axolotl {
-            top: -25px;
-            right: -20px;
-            width: 55px;
+            top: -26px;
+            right: -18px;
+            width: 56px;
         }
 
-        /* Nyan Cat : À cheval sur le bas droit de la première bulle */
         .stk-nyan {
-            bottom: -15px;
-            right: -15px;
-            width: 65px;
+            bottom: -16px;
+            right: -14px;
+            width: 64px;
         }
 
-        /* Parrot : À gauche de la section Youtubers */
         .stk-parrot {
-            top: 10px;
-            left: -40px;
-            width: 35px;
+            top: 6px;
+            left: -34px;
+            width: 34px;
         }
 
-        /* El Gato : En bas à gauche de la dernière bulle */
         .stk-elgato {
             bottom: -20px;
-            left: -20px;
-            width: 60px;
+            left: -18px;
+            width: 58px;
+        }
+
+        /* Sur écran très étroit, les stickers qui débordent à gauche gênent :
+           on les ramène à l'intérieur. */
+        @media (max-width: 400px) {
+            .stk-parrot { left: -8px; opacity: 0.9; }
         }
     </style>
 </head>
 <body>
 
-    <div class="interests-container">
-        <img src="../Axolotl.webp" alt="Axolotl" class="sticker stk-axolotl" draggable="false">
+    <div class="container">
 
-        <header class="int-header">
-            <h1 class="int-title">Interests</h1>
-            <a href="../" class="back-btn">⬅️ Back</a>
-        </header>
+        <div class="panel" data-accent="violet">
+            <img src="../Axolotl.webp" alt="Axolotl" class="sticker stk-axolotl" draggable="false">
 
-        <div class="section-wrapper">
-            <h2 class="section-title">My interest / Video games !!!</h2>
-            <div class="interest-bubble">
-                <ul class="interest-list">
-                    <li>TAMASHIKA</li>
-                    <li>Minecraft</li>
-                    <li>ULTRAKILL</li>
-                    <li>YouTube</li>
-                    <li>Roblox</li>
-                    <li>Mangas</li>
-                </ul>
+            <header class="page-header">
+                <h1>✨ Interests</h1>
+                <a href="../" class="aero-button back-btn" data-style="violet">⬅️ Back</a>
+            </header>
+
+            <div class="stack">
+
+                <div class="section-wrapper">
+                    <h2 class="section-title">My interest / Video games !!!</h2>
+                    <div class="bubble scroll-md tint-violet">
+                        <ul>
+                            <li>TAMASHIKA</li>
+                            <li>Minecraft</li>
+                            <li>ULTRAKILL</li>
+                            <li>YouTube</li>
+                            <li>Roblox</li>
+                            <li>Mangas</li>
+                        </ul>
+                    </div>
+                    <img src="../nyan-cat.gif" alt="Nyan Cat" class="sticker stk-nyan" draggable="false">
+                </div>
+
+                <div class="section-wrapper">
+                    <img src="../parrotparty.gif" alt="Parrot Party" class="sticker stk-parrot" draggable="false">
+                    <h2 class="section-title">Youtubers I Watch!</h2>
+                    <div class="bubble scroll-md tint-aqua">
+                        <ul>
+                            <li>ThatMob</li>
+                            <li>TheMisterEpic</li>
+                            <li>Evbo</li>
+                            <li>That Chief Guy</li>
+                            <li>JoofyLooby</li>
+                            <li>doctor4t</li>
+                            <li>ClownPierce</li>
+                            <li>Parrot</li>
+                            <li>CubeINC</li>
+                            <li>Grox</li>
+                            <li>SeaWattgaming</li>
+                            <li>Joll and Conk</li>
+                            <li>Skeppy</li>
+                            <li>Wemmbu</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="section-wrapper">
+                    <h2 class="section-title">My Favorite Animes</h2>
+                    <div class="bubble scroll-md tint-pink">
+                        <ul>
+                            <li>JoJo's Bizarre Adventure</li>
+                        </ul>
+                    </div>
+                    <img src="../elgatitolover.gif" alt="El Gato" class="sticker stk-elgato" draggable="false">
+                </div>
+
             </div>
-            <img src="../nyan-cat.gif" alt="Nyan Cat" class="sticker stk-nyan" draggable="false">
         </div>
 
-        <div class="section-wrapper">
-            <img src="../parrotparty.gif" alt="Parrot Party" class="sticker stk-parrot" draggable="false">
-            <h2 class="section-title">Youtubers I Watch!</h2>
-            <div class="interest-bubble">
-                <ul class="interest-list">
-                    <li>ThatMob</li>
-                    <li>TheMisterEpic</li>
-                    <li>Evbo</li>
-                    <li>That Chief Guy</li>
-                    <li>JoofyLooby</li>
-                    <li>doctor4t</li>
-                    <li>ClownPierce</li>
-                    <li>Parrot</li>
-                    <li>CubeINC</li>
-                    <li>Grox</li>
-                    <li>SeaWattgaming</li>
-                    <li>Joll and Conk</li>
-                    <li>Skeppy</li>
-                    <li>Wemmbu</li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="section-wrapper">
-            <h2 class="section-title">My Favorite Animes</h2>
-            <div class="interest-bubble">
-                <ul class="interest-list">
-                    <li>JoJo's Bizarre Adventure</li>
-                    
-                </ul>
-            </div>
-            <img src="../elgatitolover.gif" alt="El Gato" class="sticker stk-elgato" draggable="false">
-        </div>
     </div>
+
+    <footer class="site-footer">
+        <a href="../mentions-legales.html">Mentions légales</a>
+    </footer>
 
 </body>
 </html>

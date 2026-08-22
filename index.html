@@ -3,631 +3,133 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#030d16">
+    <meta name="color-scheme" content="dark">
     <title>AmaiSharkyuu's Bio</title>
+    <link rel="stylesheet" href="aero.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;700&display=swap');
+        /* ---- Éléments propres à la page d'accueil ---- */
 
-body {
-    margin: 0;
-    padding: 20px;
-    box-sizing: border-box;
+        .title-panel {
+            text-align: center;
+            padding: 20px 18px;
+        }
 
-    background: linear-gradient(135deg, #a1c0d4 0%, #fae8ff 100%);
-    background-attachment: fixed;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    color: #334155;
+        .title-panel .page-title span {
+            position: relative;
+            display: inline-block;
+        }
 
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+        .title-blahaj {
+            width: 52px;
+            height: auto;
+            position: absolute;
+            left: -62px;
+            top: 50%;
+            transform: translateY(-50%);
+            user-select: none;
+            -webkit-user-select: none;
+            filter: drop-shadow(0 0 10px rgba(79, 216, 255, 0.6));
+        }
 
-    min-height: 100dvh; /* meilleur que 100vh sur téléphone */
-    overflow-x: hidden; /* bloque seulement le scroll horizontal */
-}
+        .avatar-wrap {
+            display: flex;
+            justify-content: center;
+        }
 
-.page-title-container {
-    text-align: center;
-    margin-top: 20px;
-    margin-bottom: 30px;
-    width: 100%;
-}
+        .avatar {
+            width: 148px;
+            height: 148px;
+            object-fit: cover;
+            background-color: rgba(3, 20, 32, 0.8);
+            border: 1px solid var(--glass-line);
+            border-top: 2px solid var(--glass-top);
+            box-shadow:
+                0 10px 26px rgba(0, 0, 0, 0.6),
+                0 0 22px rgba(79, 216, 255, 0.25);
+        }
 
-.page-title {
-    font-size: 28px;
-    font-weight: 700;
-    color: #0369a1;
-    text-shadow: 1px 1px 0px #ffffff;
-    margin: 0;
-}
+        /* Boîte bio : le GIF de bulles reste, mais assombri pour rester lisible */
+        .bio-panel {
+            text-align: center;
+            background-image:
+                linear-gradient(rgba(3, 16, 26, 0.78), rgba(3, 16, 26, 0.86)),
+                url('bubble-pixel-background.gif');
+            background-size: cover;
+            background-position: center;
+        }
 
-.container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    max-width: 360px;
-    width: 100%;
-    gap: 20px;
-}
+        .bio-panel h2 {
+            margin: 0 0 14px;
+            font-size: 23px;
+            font-weight: 700;
+            color: var(--pink);
+            text-shadow: 0 0 14px rgba(255, 122, 209, 0.55);
+        }
 
-.avatar {
-    width: 140px;
-    height: 140px;
-    object-fit: cover;
-    border: 3px solid #ffffff;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-    border-radius: 0 !important;
-}
+        .line {
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 9px;
+            color: var(--text);
+        }
+        .line:last-child { margin-bottom: 0; }
 
-.bio-box {
-    background: linear-gradient(to bottom, #fdf4ff 0%, #f0fdfa 100%);
-    color: #0f172a;
-    border: 2px solid #e2e8f0;
-    border-top: 4px solid #f472b6;
-    padding: 25px;
-    width: 100%;
-    box-sizing: border-box;
-    text-align: center;
-    box-shadow: 0 8px 20px rgba(15, 23, 42, 0.08);
-    border-radius: 0 !important;
-}
-
-.bio-box h2 {
-    margin-top: 0;
-    margin-bottom: 15px;
-    font-size: 22px;
-    color: #db2777;
-}
-
-.line {
-    margin-bottom: 10px;
-    font-size: 15px;
-    font-weight: 500;
-}
-.line:last-child {
-    margin-bottom: 0;
-}
-
-.aero-button {
-    display: block;
-    width: 100%;
-    box-sizing: border-box;
-    background: linear-gradient(to bottom, #38bdf8 0%, #0284c7 100%);
-    color: #ffffff;
-    border: 1px solid #0369a1;
-    border-top: 2px solid #7dd3fc;
-    text-decoration: none;
-    padding: 14px;
-    text-align: center;
-    font-weight: bold;
-    font-size: 15px;
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
-    box-shadow: 0 4px 10px rgba(2, 132, 199, 0.2);
-    transition: all 0.2s ease;
-    border-radius: 0 !important;
-}
-
-.aero-button:hover {
-    background: linear-gradient(to bottom, #7dd3fc 0%, #0369a1 100%);
-    box-shadow: 0 6px 14px rgba(2, 132, 199, 0.3);
-}
-
-/* Bouton secondaire (Rose) pour le bouton retour */
-.secondary-button {
-    background: linear-gradient(to bottom, #f472b6 0%, #db2777 100%);
-    border: 1px solid #be185d;
-    border-top: 2px solid #fbcfe8;
-    box-shadow: 0 4px 10px rgba(219, 39, 119, 0.2);
-}
-
-.secondary-button:hover {
-    background: linear-gradient(to bottom, #fbcfe8 0%, #db2777 100%);
-    box-shadow: 0 6px 14px rgba(219, 39, 119, 0.3);
-}
-
-
-
-
-
-/* --- Remplace ou ajoute cette partie pour la zone de dessin --- */
-
-.drawing-box {
-    background: linear-gradient(to bottom, #f0fdfa 0%, #f0f9ff 100%);
-    color: #0f172a;
-    border: 2px solid #e2e8f0;
-    border-top: 4px solid #38bdf8;
-    padding: 15px;
-    width: 100%;
-    box-sizing: border-box;
-    text-align: center;
-    box-shadow: 0 8px 20px rgba(15, 23, 42, 0.08);
-    border-radius: 0 !important;
-}
-
-.drawing-box h3 {
-    margin-top: 0;
-    margin-bottom: 10px;
-    font-size: 18px;
-    color: #0284c7;
-}
-
-/* Barre d'outils style Frutiger Aero plat */
-.toolbar {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    background-color: #ffffff;
-    border: 1px solid #cbd5e1;
-    padding: 8px;
-    margin-bottom: 10px;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.tool-group {
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    font-size: 12px;
-    font-weight: bold;
-}
-
-.tool-group input[type="range"] {
-    width: 60px;
-}
-
-.tool-btn {
-    background: #f1f5f9;
-    border: 1px solid #cbd5e1;
-    padding: 4px 8px;
-    font-size: 12px;
-    font-weight: bold;
-    cursor: pointer;
-    border-radius: 0 !important;
-}
-.tool-btn:hover {
-    background: #e2e8f0;
-}
-
-/* Le Canvas */
-#paintCanvas {
-    background-color: #ffffff;
-    border: 2px solid #cbd5e1;
-    cursor: crosshair;
-    display: block;
-    margin: 0 auto 15px auto;
-    max-width: 100%;
-}
-
-.canvas-buttons {
-    display: flex;
-    gap: 10px;
-}
-
-.canvas-btn {
-    flex: 1;
-    padding: 12px;
-    font-weight: bold;
-    font-size: 14px;
-    border: 1px solid #cbd5e1;
-    cursor: pointer;
-    border-radius: 0 !important;
-}
-
-.btn-clear {
-    background-color: #f1f5f9;
-    color: #64748b;
-}
-.btn-clear:hover {
-    background-color: #e2e8f0;
-}
-
-.btn-save {
-    background: linear-gradient(to bottom, #f472b6 0%, #db2777 100%);
-    color: #ffffff;
-    border: 1px solid #be185d;
-    border-top: 2px solid #fbcfe8;
-    text-shadow: 0 1px 1px rgba(0,0,0,0.2);
-}
-.btn-save:hover {
-    background: linear-gradient(to bottom, #fbcfe8 0%, #db2777 100%);
-}
-
-
-
-/* Classe pour cacher la boîte de dessin */
-.hidden {
-    display: none !important;
-}
-
-/* Style spécifique du bouton qui ouvre le dessin (Style rose pour changer du bleu) */
-.toggle-btn {
-    background: linear-gradient(to bottom, #f472b6 0%, #db2777 100%) !important;
-    border: 1px solid #be185d !important;
-    border-top: 2px solid #fbcfe8 !important;
-}
-.toggle-btn:hover {
-    background: linear-gradient(to bottom, #fbcfe8 0%, #db2777 100%) !important;
-}
-
-/* --- À ajouter à la fin de style.css --- */
-
-/* Style pour le bouton quand il devient vert */
-.btn-green {
-    background: linear-gradient(to bottom, #4ade80 0%, #16a34a 100%) !important;
-    border: 1px solid #15803d !important;
-    border-top: 2px solid #bbf7d0 !important;
-    color: #ffffff !important;
-}
-.btn-green:hover {
-    background: linear-gradient(to bottom, #bbf7d0 0%, #16a34a 100%) !important;
-}
-
-
-
-/* Bouton style Aqua Rouge / Ruby Glossy */
-.aero-button[data-style="red"] {
-    background: linear-gradient(to bottom, #f87171 0%, #dc2626 100%);
-    color: #ffffff; /* Texte blanc pour ressortir sur le rouge */
-    border: 1px solid #b91c1c;
-    border-top: 2px solid #fca5a5; /* Reflet de lumière sur le dessus */
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
-    box-shadow: 0 4px 10px rgba(220, 38, 38, 0.2);
-}
-
-/* Effet au survol du bouton rouge */
-.aero-button[data-style="red"]:hover {
-    background: linear-gradient(to bottom, #fca5a5 0%, #b91c1c 100%);
-    box-shadow: 0 6px 14px rgba(220, 38, 38, 0.3);
-}
-
-/* Bouton style Aqua Violet / Améthyste Glossy */
-.aero-button[data-style="purple"] {
-    background: linear-gradient(to bottom, #c084fc 0%, #9333ea 100%);
-    color: #ffffff;
-    border: 1px solid #7e22ce;
-    border-top: 2px solid #e9d5ff; /* Reflet de lumière sur le dessus */
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
-    box-shadow: 0 4px 10px rgba(147, 51, 234, 0.2);
-}
-
-/* Effet au survol du bouton violet */
-.aero-button[data-style="purple"]:hover {
-    background: linear-gradient(to bottom, #e9d5ff 0%, #7e22ce 100%);
-    box-shadow: 0 6px 14px rgba(147, 51, 234, 0.3);
-}
-
-/* Bouton style Aqua Gris / Métal Glossy */
-.aero-button[data-style="gray"] {
-    background: linear-gradient(to bottom, #cbd5e1 0%, #64748b 100%);
-    color: #ffffff;
-    border: 1px solid #475569;
-    border-top: 2px solid #f1f5f9; /* Reflet de lumière sur le dessus */
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
-    box-shadow: 0 4px 10px rgba(100, 116, 139, 0.2);
-}
-
-/* Effet au survol du bouton gris */
-.aero-button[data-style="gray"]:hover {
-    background: linear-gradient(to bottom, #f1f5f9 0%, #475569 100%);
-    box-shadow: 0 6px 14px rgba(100, 116, 139, 0.3);
-}
-
-
-
-
-/* Nettoyage du profil */
-#profileContent {
-    position: relative;
-    width: 100%;
-    max-width: 360px;
-    box-sizing: border-box;
-}
-
-/* Style de la bio-box mis à jour avec ton fond GIF */
-.bio-box {
-    background-image: url('bubble-pixel-background.gif');
-    background-size: cover;
-    background-position: center;
-    color: #0f172a;
-    border: 2px solid #e2e8f0;
-    border-top: 4px solid #f472b6;
-    padding: 25px;
-    width: 100%;
-    box-sizing: border-box;
-    text-align: center;
-    box-shadow: 0 8px 20px rgba(15, 23, 42, 0.08);
-    border-radius: 0 !important; /* On garde les angles bien droits */
-    
-    position: relative; /* TRÈS IMPORTANT pour caler les stickers à l'intérieur */
-}
-
-/* Style commun pour les stickers Bubble dans la boîte */
-.sticker-bubble {
-    position: absolute;
-    width: 50px; /* Aligne la taille selon tes préférences */
-    height: auto;
-    z-index: 10;
-    pointer-events: none;
-}
-
-/* Position : À cheval sur le coin HAUT à droite */
-.bubble-bio-top {
-    top: -25px;     /* Moitié de la hauteur du sticker vers le haut */
-    right: -25px;   /* Moitié de la largeur du sticker vers la droite */
-}
-
-/* Position : À cheval sur le coin BAS à droite */
-.bubble-bio-bottom {
-    bottom: -25px;  /* Moitié de la hauteur du sticker vers le bas */
-    right: -25px;   /* Moitié de la largeur du sticker vers la droite */
-}
+        .bubble-bio-bottom {
+            bottom: -24px;
+            right: -20px;
+            width: 52px;
+        }
     </style>
 </head>
 
 <body>
 
-    <div id="profileContent" class="container">
-        <header class="page-title-container" style="display: block !important; text-align: center !important; width: 100% !important; visibility: visible !important; opacity: 1 !important; height: auto !important; background: #ffffff !important; border: 2px solid #e2e8f0 !important; border-top: 4px solid #0369a1 !important; padding: 20px !important; box-sizing: border-box !important; box-shadow: 0 8px 20px rgba(15, 23, 42, 0.08) !important; border-radius: 0 !important;">
-            <h1 class="page-title" style="margin: 0 !important; text-align: center !important; display: inline-block !important; visibility: visible !important;">
+    <div class="container">
+
+        <header class="panel title-panel" data-accent="aqua">
+            <h1 class="page-title">
                 AmaiSharkyuu's<br>
-                <span style="position: relative; display: inline-block;">
-                    <img src="Roblox_blahaj.webp" alt="Roblox Blahaj" draggable="false" style="width: 55px !important; height: auto !important; position: absolute !important; left: -65px !important; top: 50% !important; transform: translateY(-50%) !important; -webkit-user-select: none !important; user-select: none !important; display: block !important; visibility: visible !important;">
+                <span>
+                    <img class="title-blahaj" src="Roblox_blahaj.webp" alt="Roblox Blahaj" draggable="false">
                     Bio
                 </span>
             </h1>
         </header>
 
-        <img class="avatar" src="https://tr.rbxcdn.com/30DAY-Avatar-838CD871E56EAFF8FCAAD16A2689A6D9-Png/720/720/Avatar/png/noFilter" alt="Roblox Avatar" draggable="false">
-        
-        <div class="bio-box">
+        <div class="avatar-wrap">
+            <!-- avatar.png est rafraîchi chaque jour par .github/workflows/avatar.yml -->
+            <img class="avatar" src="avatar.png" width="420" height="420" alt="Avatar Roblox d'AmaiSharkyuu" draggable="false">
+        </div>
+
+        <div class="panel bio-panel" data-accent="pink">
             <h2>AmaiSharkyuu</h2>
-            <div class="line">🎂 23/12/2009</div>
+            <div class="line">🎂 18+</div>
             <div class="line">💬 Pronouns : Any</div>
             <div class="line">🏳️‍⚧️ Trans Girl, lesbian</div>
             <div class="line">♾️ Autistic</div>
 
-            <img src="bubble-tadc.gif" class="sticker-bubble bubble-bio-bottom" alt="Bubble Sticker" draggable="false">
+            <img src="bubble-tadc.gif" class="sticker bubble-bio-bottom" alt="Bubble Sticker" draggable="false">
         </div>
 
-        <a class="aero-button" data-style="red" href="/Characters/">
+        <a class="aero-button" data-style="red" href="Characters/">
             ⭐ My Favorite Characters
         </a>
 
-        <a class="aero-button" data-style="purple" href="/Interests/">
+        <a class="aero-button" data-style="violet" href="Interests/">
             ✨ Interests
         </a>
 
-        <a class="aero-button" data-style="gray" href="/HateList/">
+        <a class="aero-button" data-style="steel" href="HateList/">
             ❌ People I HATE
         </a>
 
-        
-    </div>
-    <br>
-    <div class="container">
-        <button id="toggleDrawingBtn" class="aero-button toggle-btn">
-            🎨 Open Drawing Board
-        </button>
-
-        <div id="drawingBox" class="drawing-box hidden">
-            <h3>Draw me something! ✨</h3>
-            
-            <div class="toolbar">
-                <div class="tool-group">
-                    <label>🎨</label>
-                    <input type="color" id="colorPicker" value="#db2777">
-                </div>
-                
-                <div class="tool-group">
-                    <label>✏️ Size</label>
-                    <input type="range" id="sizePicker" min="2" max="20" value="5">
-                </div>
-
-                <div class="tool-group">
-                    <button id="textBtn" class="tool-btn">🔤 Text</button>
-                </div>
-
-                <div class="tool-group">
-                    <button id="stickerBtn" class="tool-btn">⭐ Sticker</button>
-                </div>
-            </div>
-
-            <canvas id="paintCanvas" width="320" height="250"></canvas>
-            
-            <div class="canvas-buttons">
-                <button id="clearBtn" class="canvas-btn btn-clear">Clear</button>
-                <button id="sendDiscordBtn" class="canvas-btn btn-save">Send to Discord! 🚀</button>
-            </div>
-        </div>
     </div>
 
-    <script>
-        const toggleDrawingBtn = document.getElementById('toggleDrawingBtn');
-        const drawingBox = document.getElementById('drawingBox');
-        const profileContent = document.getElementById('profileContent');
-
-        toggleDrawingBtn.addEventListener('click', () => {
-            drawingBox.classList.toggle('hidden');
-            profileContent.classList.toggle('hidden'); // Cache ou montre tout le profil
-            
-            if (drawingBox.classList.contains('hidden')) {
-                toggleDrawingBtn.innerText = "🎨 Open Drawing Board";
-                toggleDrawingBtn.classList.remove('btn-green'); // Retire le vert
-            } else {
-                toggleDrawingBtn.innerText = "❌ Close Drawing Board";
-                toggleDrawingBtn.classList.add('btn-green'); // Devient vert
-            }
-        });
-
-        // --- LE RESTE DE TON CODE EXISTANT (DESSIN + WEBHOOK) EN DESSOUS ---
-
-
-        // REMPLACE CETTE URL PAR TON LIEN DE WEBHOOK DISCORD
-        const DISCORD_WEBHOOK_URL = 'https://discord.com/api/webhooks/1521158303479238818/-_CcltnnV1ve9VG_PxVKyTDD3BFMkGczkitnQAHaxrHhzbFFgh12GAUdiBf5zRuQUgyZ';
-
-        const canvas = document.getElementById('paintCanvas');
-        const ctx = canvas.getContext('2d');
-        const colorPicker = document.getElementById('colorPicker');
-        const sizePicker = document.getElementById('sizePicker');
-        const textBtn = document.getElementById('textBtn');
-        const stickerBtn = document.getElementById('stickerBtn');
-        const clearBtn = document.getElementById('clearBtn');
-        const sendDiscordBtn = document.getElementById('sendDiscordBtn');
-
-        let isDrawing = false;
-        let currentMode = 'draw'; // 'draw', 'text', 'sticker'
-
-        // Activer le mode Dessin par défaut au changement d'outils de couleur/taille
-        colorPicker.addEventListener('input', () => currentMode = 'draw');
-        sizePicker.addEventListener('input', () => currentMode = 'draw');
-
-        textBtn.addEventListener('click', () => {
-            currentMode = 'text';
-            alert("Click anywhere on the canvas to add text!");
-        });
-
-        stickerBtn.addEventListener('click', () => {
-            currentMode = 'sticker';
-            alert("Click anywhere on the canvas to place a sticker!");
-        });
-
-        // Fonctions principales
-        function getCoordinates(e) {
-            const rect = canvas.getBoundingClientRect();
-            const x = (e.clientX || e.touches[0].clientX) - rect.left;
-            const y = (e.clientY || e.touches[0].clientY) - rect.top;
-            return { x, y };
-        }
-
-        function handleCanvasClick(e) {
-            const coords = getCoordinates(e);
-
-            if (currentMode === 'text') {
-                const text = prompt("Enter your text:");
-                if (text) {
-                    ctx.fillStyle = colorPicker.value;
-                    ctx.font = `${sizePicker.value * 3}px 'Segoe UI'`;
-                    ctx.fillText(text, coords.x, coords.y);
-                }
-                currentMode = 'draw';
-            } else if (currentMode === 'sticker') {
-                const stickers = ["⭐", "💖", "🍓", "🦈", "👾", "🩹", "🐱"];
-                const randomSticker = stickers[Math.floor(Math.random() * stickers.length)];
-                ctx.font = `${sizePicker.value * 4}px Arial`;
-                ctx.textAlign = "center";
-                ctx.textBaseline = "middle";
-                ctx.fillText(randomSticker, coords.x, coords.y);
-                currentMode = 'draw';
-            }
-        }
-
-        // Événements pour dessiner
-        canvas.addEventListener('mousedown', (e) => {
-            if (currentMode !== 'draw') {
-                handleCanvasClick(e);
-                return;
-            }
-            isDrawing = true;
-            ctx.strokeStyle = colorPicker.value;
-            ctx.lineWidth = sizePicker.value;
-            ctx.lineCap = 'square';
-            
-            const coords = getCoordinates(e);
-            ctx.beginPath();
-            ctx.moveTo(coords.x, coords.y);
-        });
-
-        canvas.addEventListener('mousemove', (e) => {
-            if (!isDrawing || currentMode !== 'draw') return;
-            const coords = getCoordinates(e);
-            ctx.lineTo(coords.x, coords.y);
-            ctx.stroke();
-        });
-
-        canvas.addEventListener('mouseup', () => isDrawing = false);
-        canvas.addEventListener('mouseout', () => isDrawing = false);
-
-        // Support Mobile (Tactile)
-        canvas.addEventListener('touchstart', (e) => {
-            if (currentMode !== 'draw') {
-                handleCanvasClick(e);
-                return;
-            }
-            isDrawing = true;
-            ctx.strokeStyle = colorPicker.value;
-            ctx.lineWidth = sizePicker.value;
-            const coords = getCoordinates(e);
-            ctx.beginPath();
-            ctx.moveTo(coords.x, coords.y);
-        });
-        canvas.addEventListener('touchmove', (e) => {
-            if (!isDrawing || currentMode !== 'draw') return;
-            const coords = getCoordinates(e);
-            ctx.lineTo(coords.x, coords.y);
-            ctx.stroke();
-        });
-        canvas.addEventListener('touchend', () => isDrawing = false);
-
-        // Clear
-        clearBtn.addEventListener('click', () => {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-        });
-
-        // Envoi vers Discord par Webhook avec fond blanc forcé
-        sendDiscordBtn.addEventListener('click', () => {
-            if (DISCORD_WEBHOOK_URL === 'TON_URL_WEBHOOK_ICI') {
-                alert("Oops! You need to configure your Discord Webhook URL in script.js first.");
-                return;
-            }
-
-            sendDiscordBtn.innerText = "Sending... ⌛";
-            sendDiscordBtn.disabled = true;
-
-            // 1. Créer un canvas temporaire pour fusionner le dessin sur un fond blanc
-            const tempCanvas = document.createElement('canvas');
-            tempCanvas.width = canvas.width;
-            tempCanvas.height = canvas.height;
-            const tempCtx = tempCanvas.getContext('2d');
-
-            // 2. Remplir le fond en blanc
-            tempCtx.fillStyle = '#ffffff';
-            tempCtx.fillRect(0, 0, tempCanvas.width, tempCanvas.height);
-
-            // 3. Dessiner l'œuvre de l'utilisateur par-dessus le fond blanc
-            tempCtx.drawImage(canvas, 0, 0);
-
-            // 4. Convertir et envoyer ce canvas temporaire
-            tempCanvas.toBlob((blob) => {
-                const formData = new FormData();
-                formData.append('file', blob, 'fanart.png');
-                formData.append('payload_json', JSON.stringify({
-                    content: "🎨 **New drawing received from your strawpage!**"
-                }));
-
-                fetch(DISCORD_WEBHOOK_URL, {
-                    method: 'POST',
-                    body: formData
-                })
-                .then(response => {
-                    if (response.ok) {
-                        alert("Drawing successfully sent to Discord! 🎉");
-                        ctx.clearRect(0, 0, canvas.width, canvas.height); // Efface le canvas principal après envoi
-                    } else {
-                        alert("Failed to send drawing. Check your Webhook link.");
-                    }
-                })
-                .catch(err => {
-                    console.error(err);
-                    alert("An error occurred while sending.");
-                })
-                .finally(() => {
-                    sendDiscordBtn.innerText = "Send to Discord! 🚀";
-                    sendDiscordBtn.disabled = false;
-                });
-            }, 'image/png');
-        });
-    </script>
+    <footer class="site-footer">
+        <a href="mentions-legales.html">Mentions légales</a>
+    </footer>
 
 </body>
 </html>

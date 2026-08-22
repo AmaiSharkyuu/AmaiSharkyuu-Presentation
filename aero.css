@@ -1,0 +1,396 @@
+/* ============================================================
+   AmaiSharkyuu — Dark Frutiger Aero
+   Thème partagé par toutes les pages du site.
+   Règle d'or : aucun angle arrondi, tout est carré.
+   Pensé mobile d'abord (colonne unique, cibles tactiles 48px).
+   ============================================================ */
+
+/* --- Aucun arrondi nulle part, y compris sur les contrôles natifs --- */
+*,
+*::before,
+*::after {
+    border-radius: 0 !important;
+}
+
+:root {
+    /* Fonds : océan profond nocturne */
+    --deep: #030d16;
+    --deep-2: #061c2c;
+    --deep-3: #0a2c40;
+
+    /* Verre */
+    --glass: rgba(9, 38, 56, 0.72);
+    --glass-line: rgba(130, 226, 255, 0.30);
+    --glass-top: rgba(168, 240, 255, 0.55);
+
+    /* Accents Frutiger Aero */
+    --aqua: #4fd8ff;
+    --aqua-deep: #0d7ea8;
+    --lime: #8ef564;
+    --lime-deep: #2f8f3c;
+    --pink: #ff7ad1;
+    --pink-deep: #b52a86;
+    --violet: #b18cff;
+    --violet-deep: #6b34c9;
+    --steel: #93b3c6;
+    --steel-deep: #3d5a6b;
+    --ruby: #ff6b6b;
+    --ruby-deep: #a81d33;
+
+    /* Texte */
+    --text: #e2f6ff;
+    --text-dim: #9dc0d2;
+    --text-strong: #ffffff;
+}
+
+html {
+    -webkit-text-size-adjust: 100%;
+}
+
+body {
+    margin: 0;
+    padding: 24px 16px 40px;
+    padding-bottom: calc(40px + env(safe-area-inset-bottom));
+    box-sizing: border-box;
+    min-height: 100dvh;
+
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: var(--text);
+    font-size: 16px;
+    line-height: 1.6;
+
+    background-color: var(--deep);
+    background-image:
+        /* halos bioluminescents */
+        radial-gradient(circle at 12% 6%, rgba(79, 216, 255, 0.20), transparent 42%),
+        radial-gradient(circle at 88% 22%, rgba(177, 140, 255, 0.16), transparent 40%),
+        radial-gradient(circle at 50% 96%, rgba(142, 245, 100, 0.12), transparent 46%),
+        /* dégradé de profondeur */
+        linear-gradient(170deg, var(--deep-3) 0%, var(--deep-2) 42%, var(--deep) 100%);
+    background-attachment: fixed;
+    background-size: cover;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+
+    overflow-x: hidden;
+    -webkit-tap-highlight-color: rgba(79, 216, 255, 0.25);
+}
+
+/* Voile de bulles très discret, purement décoratif */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    background-image:
+        radial-gradient(circle at 18% 78%, rgba(255, 255, 255, 0.07) 0 3px, transparent 4px),
+        radial-gradient(circle at 72% 34%, rgba(255, 255, 255, 0.06) 0 5px, transparent 6px),
+        radial-gradient(circle at 40% 12%, rgba(255, 255, 255, 0.05) 0 2px, transparent 3px),
+        radial-gradient(circle at 88% 66%, rgba(255, 255, 255, 0.05) 0 4px, transparent 5px),
+        radial-gradient(circle at 8%  40%, rgba(255, 255, 255, 0.04) 0 2px, transparent 3px);
+}
+
+/* Tout le contenu passe au-dessus du voile */
+body > * {
+    position: relative;
+    z-index: 1;
+}
+
+/* ------------------------------------------------------------
+   Conteneur : colonne unique, calibrée pour un écran de téléphone
+   ------------------------------------------------------------ */
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 18px;
+    width: 100%;
+    max-width: 380px;
+    box-sizing: border-box;
+}
+
+/* ------------------------------------------------------------
+   Panneau de verre (la brique de base du thème)
+   ------------------------------------------------------------ */
+.panel {
+    position: relative;
+    box-sizing: border-box;
+    width: 100%;
+    padding: 22px;
+
+    background-color: var(--glass);
+    background-image: linear-gradient(
+        to bottom,
+        rgba(255, 255, 255, 0.14) 0%,
+        rgba(255, 255, 255, 0.05) 48%,
+        rgba(0, 0, 0, 0.10) 50%,
+        rgba(0, 0, 0, 0.22) 100%
+    );
+
+    border: 1px solid var(--glass-line);
+    border-top: 2px solid var(--glass-top);
+    box-shadow:
+        0 12px 30px rgba(0, 0, 0, 0.55),
+        inset 0 1px 0 rgba(255, 255, 255, 0.22);
+
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+}
+
+/* Filet lumineux d'accent en haut de panneau */
+.panel[data-accent]::before {
+    content: "";
+    position: absolute;
+    top: -2px;
+    left: -1px;
+    right: -1px;
+    height: 3px;
+}
+.panel[data-accent="aqua"]::before   { background: var(--aqua);   box-shadow: 0 0 14px var(--aqua); }
+.panel[data-accent="pink"]::before   { background: var(--pink);   box-shadow: 0 0 14px var(--pink); }
+.panel[data-accent="violet"]::before { background: var(--violet); box-shadow: 0 0 14px var(--violet); }
+.panel[data-accent="lime"]::before   { background: var(--lime);   box-shadow: 0 0 14px var(--lime); }
+.panel[data-accent="steel"]::before  { background: var(--steel);  box-shadow: 0 0 14px rgba(147, 179, 198, 0.8); }
+
+/* ------------------------------------------------------------
+   Titres
+   ------------------------------------------------------------ */
+.page-title {
+    margin: 0;
+    font-size: 26px;
+    font-weight: 700;
+    line-height: 1.25;
+    color: var(--text-strong);
+    text-shadow: 0 0 18px rgba(79, 216, 255, 0.55);
+    text-align: center;
+}
+
+.panel-title {
+    margin: 0 0 14px;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--aqua);
+    text-shadow: 0 0 12px rgba(79, 216, 255, 0.45);
+}
+
+.section-title {
+    margin: 0 0 8px;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    color: var(--text-strong);
+    text-transform: uppercase;
+}
+
+/* En-tête de sous-page : titre + bouton retour */
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    padding-bottom: 14px;
+    margin-bottom: 18px;
+    border-bottom: 1px solid var(--glass-line);
+}
+
+.page-header h1 {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--text-strong);
+    text-shadow: 0 0 14px rgba(79, 216, 255, 0.4);
+}
+
+/* ------------------------------------------------------------
+   Boutons vitrés (le cœur du look Aero)
+   ------------------------------------------------------------ */
+.aero-button {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    box-sizing: border-box;
+    width: 100%;
+    min-height: 52px;              /* confort tactile */
+    padding: 14px 16px;
+
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: 700;
+    text-align: center;
+    text-decoration: none;
+    color: #ffffff;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.55);
+
+    background-image: linear-gradient(to bottom, var(--btn-light) 0%, var(--btn-dark) 100%);
+    border: 1px solid var(--btn-edge);
+    border-top: 2px solid var(--btn-shine);
+    box-shadow:
+        0 6px 18px rgba(0, 0, 0, 0.45),
+        0 0 18px var(--btn-glow),
+        inset 0 1px 0 rgba(255, 255, 255, 0.45);
+
+    cursor: pointer;
+    overflow: hidden;
+    transition: filter 0.15s ease, transform 0.06s ease;
+
+    /* palette par défaut : aqua */
+    --btn-light: #56d6ff;
+    --btn-dark: #0a5f83;
+    --btn-edge: #073d55;
+    --btn-shine: #b8f0ff;
+    --btn-glow: rgba(79, 216, 255, 0.35);
+}
+
+/* Reflet vitré sur la moitié haute */
+.aero-button::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 48%;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.42), rgba(255, 255, 255, 0.06));
+    pointer-events: none;
+}
+
+.aero-button:active {
+    transform: translateY(1px);
+    filter: brightness(1.15);
+}
+
+/* Le survol n'existe pas au doigt : réservé aux écrans avec souris */
+@media (hover: hover) {
+    .aero-button:hover { filter: brightness(1.18); }
+}
+
+.aero-button[data-style="pink"]   { --btn-light: #ff9ade; --btn-dark: #8d1f68; --btn-edge: #5f1246; --btn-shine: #ffd0ef; --btn-glow: rgba(255, 122, 209, 0.35); }
+.aero-button[data-style="violet"] { --btn-light: #c4a6ff; --btn-dark: #4e229b; --btn-edge: #33165f; --btn-shine: #e6d9ff; --btn-glow: rgba(177, 140, 255, 0.35); }
+.aero-button[data-style="lime"]   { --btn-light: #a8fa84; --btn-dark: #24702f; --btn-edge: #17491f; --btn-shine: #d8ffc7; --btn-glow: rgba(142, 245, 100, 0.35); color: #04220b; text-shadow: 0 1px 2px rgba(255, 255, 255, 0.35); }
+.aero-button[data-style="red"]    { --btn-light: #ff8f8f; --btn-dark: #8b1626; --btn-edge: #5c0d18; --btn-shine: #ffcaca; --btn-glow: rgba(255, 107, 107, 0.35); }
+.aero-button[data-style="steel"]  { --btn-light: #b7d2e0; --btn-dark: #2e4757; --btn-edge: #1d2f3a; --btn-shine: #e4f1f8; --btn-glow: rgba(147, 179, 198, 0.28); }
+
+/* Petit bouton retour, même matière */
+.back-btn {
+    flex: 0 0 auto;
+    display: inline-flex;
+    align-items: center;
+    min-height: 40px;
+    padding: 8px 14px;
+    width: auto;
+    font-size: 14px;
+}
+
+/* ------------------------------------------------------------
+   Bulles de contenu (listes défilables)
+   ------------------------------------------------------------ */
+.bubble {
+    box-sizing: border-box;
+    padding: 14px 16px;
+    background-color: rgba(3, 20, 32, 0.72);
+    background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.07), rgba(0, 0, 0, 0.18));
+    border: 1px solid var(--glass-line);
+    border-top: 1px solid rgba(168, 240, 255, 0.40);
+    box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.45);
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.bubble.scroll-md { height: 170px; }
+.bubble.scroll-lg { height: 240px; }
+
+.bubble ul {
+    list-style: square;
+    padding-left: 20px;
+    margin: 0;
+}
+
+.bubble li {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 8px;
+}
+.bubble li:last-child { margin-bottom: 0; }
+
+/* Barres de défilement assorties, carrées */
+.bubble::-webkit-scrollbar { width: 8px; }
+.bubble::-webkit-scrollbar-track { background: rgba(0, 0, 0, 0.35); }
+.bubble::-webkit-scrollbar-thumb {
+    background: linear-gradient(to bottom, var(--aqua), var(--aqua-deep));
+    border: 1px solid rgba(0, 0, 0, 0.5);
+}
+.bubble { scrollbar-width: thin; scrollbar-color: var(--aqua-deep) rgba(0, 0, 0, 0.35); }
+
+/* ------------------------------------------------------------
+   Stickers posés à cheval sur les bords
+   ------------------------------------------------------------ */
+.section-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.sticker {
+    position: absolute;
+    z-index: 10;
+    pointer-events: none;
+    user-select: none;
+    -webkit-user-select: none;
+    filter: drop-shadow(0 0 8px rgba(79, 216, 255, 0.45));
+}
+
+/* ------------------------------------------------------------
+   Liens et texte courant
+   ------------------------------------------------------------ */
+a { color: var(--aqua); }
+
+.muted {
+    color: var(--text-dim);
+    font-size: 13px;
+}
+
+hr.aero-sep {
+    border: none;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--glass-line), transparent);
+    margin: 26px 0;
+}
+
+/* ------------------------------------------------------------
+   Pied de page commun
+   ------------------------------------------------------------ */
+.site-footer {
+    width: 100%;
+    max-width: 380px;
+    margin-top: 8px;
+    padding: 14px 10px;
+    text-align: center;
+    font-size: 12px;
+    color: var(--text-dim);
+    border-top: 1px solid var(--glass-line);
+}
+
+.site-footer a {
+    color: var(--aqua);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(79, 216, 255, 0.4);
+}
+
+/* ------------------------------------------------------------
+   Écrans larges : on garde la colonne mobile, juste un peu d'air
+   ------------------------------------------------------------ */
+@media (min-width: 720px) {
+    body { padding-top: 40px; }
+    .container, .site-footer { max-width: 420px; }
+}
+
+/* Respect des préférences d'accessibilité */
+@media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; animation: none !important; }
+}
