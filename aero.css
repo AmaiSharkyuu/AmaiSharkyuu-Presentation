@@ -1,15 +1,26 @@
 /* ============================================================
    AmaiSharkyuu — Dark Frutiger Aero
-   Thème partagé par toutes les pages du site.
-   Règle d'or : aucun angle arrondi, tout est carré.
-   Pensé mobile d'abord (colonne unique, cibles tactiles 48px).
+   Feuille de style partagée par toutes les pages.
+
+   Règles de base :
+     - aucun angle arrondi, nulle part
+     - pensé pour l'écran d'ordinateur : contenu + navbar côte à côte
+     - icônes pixel 16px du set PixelFrutiger, rendues nettes (pixelated)
    ============================================================ */
 
-/* --- Aucun arrondi nulle part, y compris sur les contrôles natifs --- */
+/* --- Aucun arrondi, y compris sur les contrôles natifs --- */
 *,
 *::before,
 *::after {
     border-radius: 0 !important;
+}
+
+@font-face {
+    font-family: 'Minecraftia';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: local('Minecraftia'), url('assets/Minecraftia.woff') format('woff');
 }
 
 :root {
@@ -19,7 +30,7 @@
     --deep-3: #0a2c40;
 
     /* Verre */
-    --glass: rgba(9, 38, 56, 0.72);
+    --glass: rgba(9, 38, 56, 0.74);
     --glass-line: rgba(130, 226, 255, 0.30);
     --glass-top: rgba(168, 240, 255, 0.55);
 
@@ -41,6 +52,10 @@
     --text: #e2f6ff;
     --text-dim: #9dc0d2;
     --text-strong: #ffffff;
+
+    /* Largeurs */
+    --page-max: 940px;
+    --nav-width: 232px;
 }
 
 html {
@@ -49,37 +64,29 @@ html {
 
 body {
     margin: 0;
-    padding: 24px 16px 40px;
-    padding-bottom: calc(40px + env(safe-area-inset-bottom));
+    padding: 30px 22px 50px;
     box-sizing: border-box;
     min-height: 100dvh;
 
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: var(--text);
     font-size: 16px;
-    line-height: 1.6;
+    line-height: 1.65;
 
     background-color: var(--deep);
     background-image:
-        /* halos bioluminescents */
         radial-gradient(circle at 12% 6%, rgba(79, 216, 255, 0.20), transparent 42%),
-        radial-gradient(circle at 88% 22%, rgba(177, 140, 255, 0.16), transparent 40%),
-        radial-gradient(circle at 50% 96%, rgba(142, 245, 100, 0.12), transparent 46%),
-        /* dégradé de profondeur */
+        radial-gradient(circle at 88% 18%, rgba(177, 140, 255, 0.16), transparent 40%),
+        radial-gradient(circle at 50% 98%, rgba(142, 245, 100, 0.13), transparent 48%),
         linear-gradient(170deg, var(--deep-3) 0%, var(--deep-2) 42%, var(--deep) 100%);
     background-attachment: fixed;
     background-size: cover;
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 18px;
 
     overflow-x: hidden;
     -webkit-tap-highlight-color: rgba(79, 216, 255, 0.25);
 }
 
-/* Voile de bulles très discret, purement décoratif */
+/* Voile de bulles décoratif */
 body::before {
     content: "";
     position: fixed;
@@ -91,36 +98,94 @@ body::before {
         radial-gradient(circle at 72% 34%, rgba(255, 255, 255, 0.06) 0 5px, transparent 6px),
         radial-gradient(circle at 40% 12%, rgba(255, 255, 255, 0.05) 0 2px, transparent 3px),
         radial-gradient(circle at 88% 66%, rgba(255, 255, 255, 0.05) 0 4px, transparent 5px),
-        radial-gradient(circle at 8%  40%, rgba(255, 255, 255, 0.04) 0 2px, transparent 3px);
+        radial-gradient(circle at 8%  44%, rgba(255, 255, 255, 0.04) 0 2px, transparent 3px);
 }
 
-/* Tout le contenu passe au-dessus du voile */
-body > * {
+/* ------------------------------------------------------------
+   Gabarit de page — DOM : en-tête → nav → contenu → pied
+   ------------------------------------------------------------ */
+/* Site pensé pour l'écran d'ordinateur : contenu à gauche, navbar à droite.
+   Rangée 1 : l'en-tête. Rangée 2 : contenu + nav côte à côte. Rangée 3 : pied.
+   Les rangées sont explicites, sinon la nav (placée avant le contenu dans le
+   HTML, pour l'ordre de lecture) déclencherait un saut de ligne dans la grille. */
+.page {
     position: relative;
     z-index: 1;
-}
-
-/* ------------------------------------------------------------
-   Conteneur : colonne unique, calibrée pour un écran de téléphone
-   ------------------------------------------------------------ */
-.container {
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-    gap: 18px;
     width: 100%;
-    max-width: 380px;
-    box-sizing: border-box;
+    max-width: var(--page-max);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) var(--nav-width);
+    gap: 20px;
+    align-items: start;
+}
+
+.site-head,
+.site-footer { grid-column: 1 / -1; }
+
+.main-col { grid-column: 1; grid-row: 2; }
+.nav-col  { grid-column: 2; grid-row: 2; position: sticky; top: 20px; }
+
+.site-title {
+    margin: 6px 0 2px;
+    font-family: 'Minecraftia', 'Segoe UI', sans-serif;
+    font-size: clamp(22px, 7vw, 40px);
+    font-weight: 400;
+    line-height: 1.3;
+    text-align: center;
+    color: var(--text-strong);
+    text-shadow:
+        0 0 20px rgba(79, 216, 255, 0.75),
+        3px 3px 0 rgba(0, 0, 0, 0.55);
+}
+
+.site-subtitle {
+    margin: 0;
+    text-align: center;
+    font-size: 12px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--aqua);
+}
+
+.site-footer {
+    text-align: center;
+    font-size: 12px;
+    color: var(--text-dim);
+    padding: 14px 10px 0;
+    border-top: 1px solid var(--glass-line);
+}
+
+.site-footer a {
+    color: var(--aqua);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(79, 216, 255, 0.4);
+}
+
+/* Filet de sécurité : sous 640px la grille à deux colonnes ne rentre plus,
+   tout s'empile. Ce n'est pas la cible du site, juste un repli propre. */
+@media (max-width: 639px) {
+    .page {
+        grid-template-columns: 1fr;
+        gap: 14px;
+    }
+
+    .main-col,
+    .nav-col {
+        grid-column: 1;
+        grid-row: auto;
+        position: static;
+    }
 }
 
 /* ------------------------------------------------------------
-   Panneau de verre (la brique de base du thème)
+   Panneau de verre : la brique de base
    ------------------------------------------------------------ */
 .panel {
     position: relative;
     box-sizing: border-box;
     width: 100%;
-    padding: 22px;
+    padding: 20px;
 
     background-color: var(--glass);
     background-image: linear-gradient(
@@ -141,7 +206,9 @@ body > * {
     backdrop-filter: blur(10px);
 }
 
-/* Filet lumineux d'accent en haut de panneau */
+.panel + .panel { margin-top: 16px; }
+
+/* Filet lumineux en haut de panneau */
 .panel[data-accent]::before {
     content: "";
     position: absolute;
@@ -155,58 +222,188 @@ body > * {
 .panel[data-accent="violet"]::before { background: var(--violet); box-shadow: 0 0 14px var(--violet); }
 .panel[data-accent="lime"]::before   { background: var(--lime);   box-shadow: 0 0 14px var(--lime); }
 .panel[data-accent="steel"]::before  { background: var(--steel);  box-shadow: 0 0 14px rgba(147, 179, 198, 0.8); }
-
-/* ------------------------------------------------------------
-   Titres
-   ------------------------------------------------------------ */
-.page-title {
-    margin: 0;
-    font-size: 26px;
-    font-weight: 700;
-    line-height: 1.25;
-    color: var(--text-strong);
-    text-shadow: 0 0 18px rgba(79, 216, 255, 0.55);
-    text-align: center;
-}
+.panel[data-accent="ruby"]::before   { background: var(--ruby);   box-shadow: 0 0 14px var(--ruby); }
 
 .panel-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
     margin: 0 0 14px;
-    font-size: 20px;
-    font-weight: 700;
-    color: var(--aqua);
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--glass-line);
+
+    font-family: 'Minecraftia', 'Segoe UI', sans-serif;
+    font-size: 18px;
+    font-weight: 400;
+    color: var(--text-strong);
     text-shadow: 0 0 12px rgba(79, 216, 255, 0.45);
 }
 
 .section-title {
-    margin: 0 0 8px;
-    font-size: 15px;
+    margin: 22px 0 8px;
+    font-size: 14px;
     font-weight: 700;
-    letter-spacing: 0.02em;
-    color: var(--text-strong);
+    letter-spacing: 0.04em;
     text-transform: uppercase;
+    color: var(--aqua);
+}
+.section-title:first-child { margin-top: 0; }
+
+/* ------------------------------------------------------------
+   Icônes pixel (PixelFrutiger 16px)
+   Planche 84x84 = 5 colonnes x 5 lignes de 16px, 1px de gouttière.
+   Affichées en 2x : pas de 34px, planche mise à l'échelle 168px.
+   ------------------------------------------------------------ */
+.pxi {
+    display: inline-block;
+    flex: 0 0 auto;
+    width: 32px;
+    height: 32px;
+    background-image: url('assets/icons-blue.png');
+    background-size: 168px 168px;
+    background-repeat: no-repeat;
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+    vertical-align: middle;
 }
 
-/* En-tête de sous-page : titre + bouton retour */
-.page-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 12px;
-    padding-bottom: 14px;
-    margin-bottom: 18px;
-    border-bottom: 1px solid var(--glass-line);
-}
+.pxi.green { background-image: url('assets/icons-green.png'); }
+.pxi.pink  { background-image: url('assets/icons-pink.png'); }
 
-.page-header h1 {
+.pxi.small { width: 16px; height: 16px; background-size: 84px 84px; }
+
+/* Ligne 0 */
+.pxi-person   { background-position:    0    0; }
+.pxi-heart    { background-position:  -34px  0; }
+.pxi-check    { background-position:  -68px  0; }
+.pxi-cross    { background-position: -102px  0; }
+.pxi-star     { background-position: -136px  0; }
+/* Ligne 1 */
+.pxi-crosshair{ background-position:    0  -34px; }
+.pxi-target   { background-position:  -34px -34px; }
+.pxi-frame    { background-position:  -68px -34px; }
+.pxi-save     { background-position: -102px -34px; }
+.pxi-folder   { background-position: -136px -34px; }
+/* Ligne 2 */
+.pxi-up       { background-position:    0  -68px; }
+.pxi-left     { background-position:  -34px -68px; }
+.pxi-right    { background-position:  -68px -68px; }
+.pxi-down     { background-position: -102px -68px; }
+.pxi-home     { background-position: -136px -68px; }
+/* Ligne 3 */
+.pxi-play     { background-position:    0 -102px; }
+.pxi-pause    { background-position:  -34px -102px; }
+.pxi-prev     { background-position:  -68px -102px; }
+.pxi-next     { background-position: -102px -102px; }
+.pxi-chat     { background-position: -136px -102px; }
+/* Ligne 4 */
+.pxi-sound    { background-position:    0 -136px; }
+.pxi-sound-up { background-position:  -34px -136px; }
+.pxi-menu     { background-position:  -68px -136px; }
+.pxi-wifi     { background-position: -102px -136px; }
+.pxi-cursor   { background-position: -136px -136px; }
+
+/* Version 1x : mêmes cases, pas de 17px */
+.pxi.small.pxi-person    { background-position:   0    0; }
+.pxi.small.pxi-heart     { background-position: -17px  0; }
+.pxi.small.pxi-check     { background-position: -34px  0; }
+.pxi.small.pxi-cross     { background-position: -51px  0; }
+.pxi.small.pxi-star      { background-position: -68px  0; }
+.pxi.small.pxi-crosshair { background-position:   0   -17px; }
+.pxi.small.pxi-target    { background-position: -17px -17px; }
+.pxi.small.pxi-frame     { background-position: -34px -17px; }
+.pxi.small.pxi-save      { background-position: -51px -17px; }
+.pxi.small.pxi-folder    { background-position: -68px -17px; }
+.pxi.small.pxi-up        { background-position:   0   -34px; }
+.pxi.small.pxi-left      { background-position: -17px -34px; }
+.pxi.small.pxi-right     { background-position: -34px -34px; }
+.pxi.small.pxi-down      { background-position: -51px -34px; }
+.pxi.small.pxi-home      { background-position: -68px -34px; }
+.pxi.small.pxi-play      { background-position:   0   -51px; }
+.pxi.small.pxi-pause     { background-position: -17px -51px; }
+.pxi.small.pxi-prev      { background-position: -34px -51px; }
+.pxi.small.pxi-next      { background-position: -51px -51px; }
+.pxi.small.pxi-chat      { background-position: -68px -51px; }
+.pxi.small.pxi-sound     { background-position:   0   -68px; }
+.pxi.small.pxi-sound-up  { background-position: -17px -68px; }
+.pxi.small.pxi-menu      { background-position: -34px -68px; }
+.pxi.small.pxi-wifi      { background-position: -51px -68px; }
+.pxi.small.pxi-cursor    { background-position: -68px -68px; }
+
+/* ------------------------------------------------------------
+   Barre de navigation
+   Mobile : grille d'icônes qui se replie. Large : liste verticale.
+   ------------------------------------------------------------ */
+.navbar ul {
+    list-style: none;
     margin: 0;
-    font-size: 20px;
-    font-weight: 700;
+    padding: 0;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 6px;
+}
+
+.navbar a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-height: 42px;
+    padding: 8px 10px;
+
+    font-family: 'Minecraftia', 'Segoe UI', sans-serif;
+    font-size: 13px;
+    line-height: 1.3;
+    text-decoration: none;
+    color: var(--text);
+
+    background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.12), rgba(0, 0, 0, 0.22));
+    background-color: rgba(6, 40, 58, 0.55);
+    border: 1px solid var(--glass-line);
+    border-top: 1px solid rgba(168, 240, 255, 0.45);
+    transition: background-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.navbar a:active {
+    background-color: rgba(13, 126, 168, 0.55);
+    box-shadow: 0 0 16px rgba(79, 216, 255, 0.4);
+}
+
+@media (hover: hover) {
+    .navbar a:hover {
+        background-color: rgba(13, 126, 168, 0.55);
+        box-shadow: 0 0 16px rgba(79, 216, 255, 0.4);
+    }
+}
+
+/* Page courante */
+.navbar a[aria-current="page"] {
     color: var(--text-strong);
-    text-shadow: 0 0 14px rgba(79, 216, 255, 0.4);
+    background-color: rgba(13, 126, 168, 0.6);
+    border-color: var(--aqua);
+    box-shadow: inset 0 0 0 1px rgba(79, 216, 255, 0.35), 0 0 16px rgba(79, 216, 255, 0.35);
+}
+
+/* Repli étroit : la nav redevient une grille d'icônes qui se replie */
+@media (max-width: 639px) {
+    .navbar ul {
+        grid-template-columns: repeat(auto-fit, minmax(74px, 1fr));
+        gap: 7px;
+    }
+
+    .navbar a {
+        flex-direction: column;
+        justify-content: center;
+        gap: 3px;
+        min-height: 62px;
+        padding: 7px 4px;
+        text-align: center;
+        font-size: 10px;
+        overflow-wrap: anywhere;
+    }
 }
 
 /* ------------------------------------------------------------
-   Boutons vitrés (le cœur du look Aero)
+   Boutons vitrés
    ------------------------------------------------------------ */
 .aero-button {
     position: relative;
@@ -217,7 +414,7 @@ body > * {
 
     box-sizing: border-box;
     width: 100%;
-    min-height: 52px;              /* confort tactile */
+    min-height: 52px;
     padding: 14px 16px;
 
     font-family: inherit;
@@ -240,7 +437,6 @@ body > * {
     overflow: hidden;
     transition: filter 0.15s ease, transform 0.06s ease;
 
-    /* palette par défaut : aqua */
     --btn-light: #56d6ff;
     --btn-dark: #0a5f83;
     --btn-edge: #073d55;
@@ -248,7 +444,6 @@ body > * {
     --btn-glow: rgba(79, 216, 255, 0.35);
 }
 
-/* Reflet vitré sur la moitié haute */
 .aero-button::after {
     content: "";
     position: absolute;
@@ -260,12 +455,10 @@ body > * {
     pointer-events: none;
 }
 
-.aero-button:active {
-    transform: translateY(1px);
-    filter: brightness(1.15);
-}
+.aero-button > * { position: relative; z-index: 1; }
 
-/* Le survol n'existe pas au doigt : réservé aux écrans avec souris */
+.aero-button:active { transform: translateY(1px); filter: brightness(1.15); }
+
 @media (hover: hover) {
     .aero-button:hover { filter: brightness(1.18); }
 }
@@ -276,19 +469,8 @@ body > * {
 .aero-button[data-style="red"]    { --btn-light: #ff8f8f; --btn-dark: #8b1626; --btn-edge: #5c0d18; --btn-shine: #ffcaca; --btn-glow: rgba(255, 107, 107, 0.35); }
 .aero-button[data-style="steel"]  { --btn-light: #b7d2e0; --btn-dark: #2e4757; --btn-edge: #1d2f3a; --btn-shine: #e4f1f8; --btn-glow: rgba(147, 179, 198, 0.28); }
 
-/* Petit bouton retour, même matière */
-.back-btn {
-    flex: 0 0 auto;
-    display: inline-flex;
-    align-items: center;
-    min-height: 40px;
-    padding: 8px 14px;
-    width: auto;
-    font-size: 14px;
-}
-
 /* ------------------------------------------------------------
-   Bulles de contenu (listes défilables)
+   Bulles de contenu (listes)
    ------------------------------------------------------------ */
 .bubble {
     box-sizing: border-box;
@@ -305,21 +487,10 @@ body > * {
 .bubble.scroll-md { height: 170px; }
 .bubble.scroll-lg { height: 240px; }
 
-.bubble ul {
-    list-style: square;
-    padding-left: 20px;
-    margin: 0;
-}
-
-.bubble li {
-    font-size: 15px;
-    font-weight: 600;
-    color: var(--text);
-    margin-bottom: 8px;
-}
+.bubble ul { list-style: square; padding-left: 20px; margin: 0; }
+.bubble li { font-size: 15px; font-weight: 600; margin-bottom: 8px; }
 .bubble li:last-child { margin-bottom: 0; }
 
-/* Barres de défilement assorties, carrées */
 .bubble::-webkit-scrollbar { width: 8px; }
 .bubble::-webkit-scrollbar-track { background: rgba(0, 0, 0, 0.35); }
 .bubble::-webkit-scrollbar-thumb {
@@ -329,12 +500,9 @@ body > * {
 .bubble { scrollbar-width: thin; scrollbar-color: var(--aqua-deep) rgba(0, 0, 0, 0.35); }
 
 /* ------------------------------------------------------------
-   Stickers posés à cheval sur les bords
+   Stickers
    ------------------------------------------------------------ */
-.section-wrapper {
-    position: relative;
-    width: 100%;
-}
+.section-wrapper { position: relative; width: 100%; }
 
 .sticker {
     position: absolute;
@@ -346,51 +514,87 @@ body > * {
 }
 
 /* ------------------------------------------------------------
-   Liens et texte courant
+   Texte courant
    ------------------------------------------------------------ */
+.panel p { margin: 0 0 12px; }
+.panel p:last-child { margin-bottom: 0; }
+
 a { color: var(--aqua); }
 
-.muted {
-    color: var(--text-dim);
-    font-size: 13px;
-}
+.muted { color: var(--text-dim); font-size: 13px; }
 
 hr.aero-sep {
     border: none;
     height: 1px;
     background: linear-gradient(90deg, transparent, var(--glass-line), transparent);
-    margin: 26px 0;
+    margin: 22px 0;
 }
 
-/* ------------------------------------------------------------
-   Pied de page commun
-   ------------------------------------------------------------ */
-.site-footer {
-    width: 100%;
-    max-width: 380px;
-    margin-top: 8px;
-    padding: 14px 10px;
-    text-align: center;
-    font-size: 12px;
-    color: var(--text-dim);
-    border-top: 1px solid var(--glass-line);
+/* Liste de liens avec icône (Socials, My sites) */
+.link-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
-.site-footer a {
-    color: var(--aqua);
+.link-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 14px;
+    min-height: 56px;
+
     text-decoration: none;
-    border-bottom: 1px solid rgba(79, 216, 255, 0.4);
+    color: var(--text);
+
+    background-color: rgba(6, 40, 58, 0.55);
+    background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.12), rgba(0, 0, 0, 0.2));
+    border: 1px solid var(--glass-line);
+    border-top: 1px solid rgba(168, 240, 255, 0.45);
+    transition: background-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.link-row:active,
+.link-row:focus-visible {
+    background-color: rgba(13, 126, 168, 0.5);
+    box-shadow: 0 0 16px rgba(79, 216, 255, 0.35);
+}
+
+@media (hover: hover) {
+    .link-row:hover {
+        background-color: rgba(13, 126, 168, 0.5);
+        box-shadow: 0 0 16px rgba(79, 216, 255, 0.35);
+    }
+}
+
+.link-row .label {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+.link-row .label b {
+    font-weight: 700;
+    color: var(--text-strong);
+}
+
+.link-row .label span {
+    font-size: 12.5px;
+    color: var(--text-dim);
+    overflow-wrap: anywhere;
 }
 
 /* ------------------------------------------------------------
-   Écrans larges : on garde la colonne mobile, juste un peu d'air
+   Accessibilité
    ------------------------------------------------------------ */
-@media (min-width: 720px) {
-    body { padding-top: 40px; }
-    .container, .site-footer { max-width: 420px; }
+:focus-visible {
+    outline: 2px solid var(--aqua);
+    outline-offset: 2px;
 }
 
-/* Respect des préférences d'accessibilité */
 @media (prefers-reduced-motion: reduce) {
     * { transition: none !important; animation: none !important; }
 }

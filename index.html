@@ -1,46 +1,26 @@
 <!DOCTYPE html>
-<html lang="fr">
-
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <meta name="theme-color" content="#030d16">
     <meta name="color-scheme" content="dark">
-    <title>AmaiSharkyuu's Bio</title>
+    <title>AmaiSharkyuu's space</title>
+    <meta name="description" content="AmaiSharkyuu's personal corner of the web. Minecraft, JoJo, sharks and a pile of small websites.">
+    <link rel="icon" type="image/png" href="assets/favicon.png">
     <link rel="stylesheet" href="aero.css">
     <style>
-        /* ---- Éléments propres à la page d'accueil ---- */
-
-        .title-panel {
-            text-align: center;
-            padding: 20px 18px;
-        }
-
-        .title-panel .page-title span {
-            position: relative;
-            display: inline-block;
-        }
-
-        .title-blahaj {
-            width: 52px;
-            height: auto;
-            position: absolute;
-            left: -62px;
-            top: 50%;
-            transform: translateY(-50%);
-            user-select: none;
-            -webkit-user-select: none;
-            filter: drop-shadow(0 0 10px rgba(79, 216, 255, 0.6));
-        }
-
-        .avatar-wrap {
+        .hero {
             display: flex;
-            justify-content: center;
+            gap: 18px;
+            align-items: center;
+            flex-wrap: wrap;
         }
 
         .avatar {
-            width: 148px;
-            height: 148px;
+            width: 132px;
+            height: 132px;
+            flex: 0 0 auto;
             object-fit: cover;
             background-color: rgba(3, 20, 32, 0.8);
             border: 1px solid var(--glass-line);
@@ -50,86 +30,95 @@
                 0 0 22px rgba(79, 216, 255, 0.25);
         }
 
-        /* Boîte bio : le GIF de bulles reste, mais assombri pour rester lisible */
-        .bio-panel {
-            text-align: center;
-            background-image:
-                linear-gradient(rgba(3, 16, 26, 0.78), rgba(3, 16, 26, 0.86)),
-                url('bubble-pixel-background.gif');
-            background-size: cover;
-            background-position: center;
+        .facts {
+            flex: 1 1 190px;
+            min-width: 0;
+            margin: 0;
+            padding: 0;
+            list-style: none;
         }
 
-        .bio-panel h2 {
-            margin: 0 0 14px;
-            font-size: 23px;
-            font-weight: 700;
-            color: var(--pink);
-            text-shadow: 0 0 14px rgba(255, 122, 209, 0.55);
-        }
-
-        .line {
+        .facts li {
+            display: flex;
+            align-items: center;
+            gap: 8px;
             font-size: 15px;
             font-weight: 600;
-            margin-bottom: 9px;
-            color: var(--text);
+            margin-bottom: 7px;
         }
-        .line:last-child { margin-bottom: 0; }
+        .facts li:last-child { margin-bottom: 0; }
 
-        .bubble-bio-bottom {
-            bottom: -24px;
-            right: -20px;
-            width: 52px;
+        .bubble-sticker {
+            bottom: -22px;
+            right: -16px;
+            width: 50px;
         }
     </style>
 </head>
-
 <body>
 
-    <div class="container">
+<div class="page">
 
-        <header class="panel title-panel" data-accent="aqua">
-            <h1 class="page-title">
-                AmaiSharkyuu's<br>
-                <span>
-                    <img class="title-blahaj" src="Roblox_blahaj.webp" alt="Roblox Blahaj" draggable="false">
-                    Bio
-                </span>
-            </h1>
-        </header>
+    <header class="site-head">
+        <h1 class="site-title">AmaiSharkyuu's space</h1>
+    </header>
 
-        <div class="avatar-wrap">
-            <!-- avatar.png est rafraîchi chaque jour par .github/workflows/avatar.yml -->
-            <img class="avatar" src="avatar.png" width="420" height="420" alt="Avatar Roblox d'AmaiSharkyuu" draggable="false">
-        </div>
+    <nav class="nav-col navbar panel" data-accent="aqua" aria-label="Site navigation">
+        <p class="panel-title"><span class="pxi pxi-menu" aria-hidden="true"></span>The navbar!!!</p>
+        <ul>
+            <li><a href="index.html" aria-current="page"><span class="pxi pxi-home" aria-hidden="true"></span>Home</a></li>
+            <li><a href="about/"><span class="pxi pxi-person" aria-hidden="true"></span>About me</a></li>
+            <li><a href="Characters/"><span class="pxi pxi-heart" aria-hidden="true"></span>Characters</a></li>
+            <li><a href="Interests/"><span class="pxi pxi-star" aria-hidden="true"></span>Interests</a></li>
+            <li><a href="HateList/"><span class="pxi pxi-cross" aria-hidden="true"></span>DNI list</a></li>
+            <li><a href="socials/"><span class="pxi pxi-chat" aria-hidden="true"></span>Socials</a></li>
+            <li><a href="mysites/"><span class="pxi pxi-folder" aria-hidden="true"></span>My sites</a></li>
+            <li><a href="changelog/"><span class="pxi pxi-save" aria-hidden="true"></span>Changelog</a></li>
+            <li><a href="credits/"><span class="pxi pxi-frame" aria-hidden="true"></span>Credits</a></li>
+        </ul>
+    </nav>
 
-        <div class="panel bio-panel" data-accent="pink">
-            <h2>AmaiSharkyuu</h2>
-            <div class="line">🎂 23/12/2009</div>
-            <div class="line">💬 Pronouns : Any</div>
-            <div class="line">🏳️‍⚧️ Trans Girl, lesbian</div>
-            <div class="line">♾️ Autistic</div>
+    <main class="main-col">
 
-            <img src="bubble-tadc.gif" class="sticker bubble-bio-bottom" alt="Bubble Sticker" draggable="false">
-        </div>
+        <section class="panel" data-accent="pink">
+            <h2 class="panel-title"><span class="pxi pink pxi-chat" aria-hidden="true"></span>Hi!!!</h2>
 
-        <a class="aero-button" data-style="red" href="Characters/">
-            ⭐ My Favorite Characters
-        </a>
+            <div class="section-wrapper">
+                <p>Hi, this is my site!</p>
+                <p>I put everything I make and everything I like here.</p>
+                <p>Navbar's on the right, click around. The sites I made are in <a href="mysites/">My sites</a>.</p>
 
-        <a class="aero-button" data-style="violet" href="Interests/">
-            ✨ Interests
-        </a>
+                <img src="bubble-tadc.gif" class="sticker bubble-sticker" alt="" draggable="false">
+            </div>
+        </section>
 
-        <a class="aero-button" data-style="steel" href="HateList/">
-            ❌ People I HATE
-        </a>
+        <section class="panel" data-accent="aqua">
+            <h2 class="panel-title"><span class="pxi pxi-person" aria-hidden="true"></span>AmaiSharkyuu</h2>
 
-    </div>
+            <div class="hero">
+                <!-- avatar.png est rafraîchi chaque jour par .github/workflows/avatar.yml -->
+                <img class="avatar" src="avatar.png" width="420" height="420" alt="AmaiSharkyuu's Roblox avatar" draggable="false">
+
+                <ul class="facts">
+                    <li><span class="pxi small pxi-star" aria-hidden="true"></span>18+</li>
+                    <li><span class="pxi small green pxi-check" aria-hidden="true"></span>Pronouns: any</li>
+                    <li><span class="pxi small pink pxi-heart" aria-hidden="true"></span>Trans girl, lesbian</li>
+                    <li><span class="pxi small green pxi-star" aria-hidden="true"></span>Autistic</li>
+                </ul>
+            </div>
+
+            <hr class="aero-sep">
+
+            <p class="muted">More about me in <a href="about/">About me</a>. Please read the <a href="HateList/">DNI list</a> before you interact.</p>
+        </section>
+
+    </main>
 
     <footer class="site-footer">
         <a href="mentions-legales.html">Mentions légales</a>
     </footer>
+
+</div>
 
 </body>
 </html>

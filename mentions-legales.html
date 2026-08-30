@@ -8,40 +8,30 @@
     <title>Mentions légales — AmaiSharkyuu</title>
     <meta name="description" content="Mentions légales du site AmaiSharkyuu : éditeur, hébergeur, propriété intellectuelle et données personnelles.">
     <meta name="robots" content="noindex, follow">
+    <link rel="icon" type="image/png" href="assets/favicon.png">
     <link rel="stylesheet" href="aero.css">
     <style>
-        /* ---- Éléments propres à la page des mentions légales ---- */
-
-        .legal-panel h2 {
+        .legal h2 {
+            display: flex;
+            align-items: center;
+            gap: 9px;
             margin: 30px 0 10px;
-            font-size: 15px;
+            font-size: 14px;
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 0.03em;
             color: var(--aqua);
             text-shadow: 0 0 12px rgba(79, 216, 255, 0.4);
         }
+        .legal h2:first-of-type { margin-top: 0; }
 
-        .legal-panel h2:first-of-type { margin-top: 22px; }
+        .legal p,
+        .legal li { font-size: 14px; line-height: 1.75; }
 
-        .legal-panel p,
-        .legal-panel li {
-            font-size: 14px;
-            line-height: 1.75;
-            color: var(--text);
-        }
+        .legal ul { padding-left: 20px; margin: 0 0 12px; list-style: square; }
+        .legal li { margin-bottom: 8px; }
 
-        .legal-panel p { margin: 0 0 12px; }
-
-        .legal-panel ul {
-            padding-left: 20px;
-            margin: 0 0 12px;
-            list-style: square;
-        }
-
-        .legal-panel li { margin-bottom: 8px; }
-
-        .legal-panel strong { color: var(--text-strong); }
+        .legal strong { color: var(--text-strong); }
 
         .info-card {
             padding: 16px 18px;
@@ -52,31 +42,42 @@
             border-top: 1px solid rgba(168, 240, 255, 0.45);
             box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.4);
         }
-
         .info-card p:last-child { margin-bottom: 0; }
 
-        .updated {
-            margin-top: 28px;
-            font-size: 12px;
-            color: var(--text-dim);
-            text-align: right;
-        }
+        .updated { margin-top: 26px; font-size: 12px; color: var(--text-dim); text-align: right; }
     </style>
 </head>
 <body>
 
-    <div class="container">
+<div class="page">
 
-        <header class="panel" data-accent="aqua" style="text-align: center; padding: 20px 18px;">
-            <h1 class="page-title" style="font-size: 22px;">Mentions légales</h1>
-            <p class="muted" style="margin: 8px 0 0;">amaisharkyuu.amaicraft.fr</p>
-        </header>
+    <header class="site-head">
+        <h1 class="site-title">Mentions légales</h1>
+        <p class="site-subtitle">amaisharkyuu.amaicraft.fr</p>
+    </header>
 
-        <div class="panel legal-panel" data-accent="pink">
+    <nav class="nav-col navbar panel" data-accent="aqua" aria-label="Navigation du site">
+        <p class="panel-title"><span class="pxi pxi-menu" aria-hidden="true"></span>The navbar!!!</p>
+        <ul>
+            <li><a href="index.html"><span class="pxi pxi-home" aria-hidden="true"></span>Home</a></li>
+            <li><a href="about/"><span class="pxi pxi-person" aria-hidden="true"></span>About me</a></li>
+            <li><a href="Characters/"><span class="pxi pxi-heart" aria-hidden="true"></span>Characters</a></li>
+            <li><a href="Interests/"><span class="pxi pxi-star" aria-hidden="true"></span>Interests</a></li>
+            <li><a href="HateList/"><span class="pxi pxi-cross" aria-hidden="true"></span>DNI list</a></li>
+            <li><a href="socials/"><span class="pxi pxi-chat" aria-hidden="true"></span>Socials</a></li>
+            <li><a href="mysites/"><span class="pxi pxi-folder" aria-hidden="true"></span>My sites</a></li>
+            <li><a href="changelog/"><span class="pxi pxi-save" aria-hidden="true"></span>Changelog</a></li>
+            <li><a href="credits/"><span class="pxi pxi-frame" aria-hidden="true"></span>Credits</a></li>
+        </ul>
+    </nav>
+
+    <main class="main-col">
+
+        <section class="panel legal" data-accent="pink">
 
             <p>Conformément à l'article 6 III de la loi n° 2004-575 du 21 juin 2004 pour la confiance dans l'économie numérique (LCEN), voici les informations relatives à l'éditeur et à l'hébergeur de ce site.</p>
 
-            <h2>1. Éditeur du site</h2>
+            <h2><span class="pxi small pxi-person" aria-hidden="true"></span>1. Éditeur du site</h2>
             <div class="info-card">
                 <p>
                     <strong>Éditeur / Directrice de la publication :</strong> AmaiSharkyuu (pseudonyme)<br>
@@ -86,7 +87,7 @@
                 <p class="muted">En application de l'article 6 III 2 de la LCEN, l'éditrice non professionnelle a choisi de rester anonyme auprès du public. Ses coordonnées complètes sont détenues par l'hébergeur et sont communicables sur réquisition de l'autorité judiciaire.</p>
             </div>
 
-            <h2>2. Hébergeur</h2>
+            <h2><span class="pxi small pxi-home" aria-hidden="true"></span>2. Hébergeur</h2>
             <div class="info-card">
                 <p>
                     <strong>GitHub Pages</strong> — GitHub, Inc.<br>
@@ -96,41 +97,47 @@
                 </p>
             </div>
 
-            <h2>3. Objet du site</h2>
+            <h2><span class="pxi small pxi-star" aria-hidden="true"></span>3. Objet du site</h2>
             <p>Ce site est une page de présentation personnelle, publiée à titre privé, sans but lucratif et sans activité commerciale. Il ne propose ni vente, ni service, ni inscription.</p>
             <p>Les listes de goûts, de préférences et la « DNI list » expriment des <strong>opinions personnelles</strong> et ne visent aucune personne identifiable.</p>
 
-            <h2>4. Données personnelles et cookies</h2>
-            <p>Le site est entièrement statique : aucun formulaire, aucun compte utilisateur, <strong>aucun outil de mesure d'audience</strong> et <strong>aucun cookie</strong>. Aucune donnée personnelle n'est collectée directement par l'éditrice.</p>
-            <p>Certains contenus sont chargés depuis des serveurs tiers, ce qui implique une connexion de votre navigateur à ceux-ci et la transmission de votre adresse IP :</p>
-            <ul>
-                <li><strong>GitHub</strong> (hébergement des pages) — <a href="https://docs.github.com/site-policy/privacy-policies/github-privacy-statement" target="_blank" rel="noopener noreferrer">déclaration de confidentialité</a> ;</li>
-                <li><strong>Tenor / Google</strong> (GIF animés de la page « DNI list », police de caractères de la page « Characters ») — voir leurs politiques respectives.</li>
-            </ul>
-            <p>L'image d'avatar Roblox est en revanche <strong>hébergée sur ce site</strong> : son affichage n'entraîne aucune connexion de votre navigateur aux serveurs de Roblox.</p>
+            <h2><span class="pxi small pxi-check" aria-hidden="true"></span>4. Données personnelles et cookies</h2>
+            <p>Le site est entièrement statique : aucun formulaire, aucun compte utilisateur, <strong>aucun outil de mesure d'audience</strong> et <strong>aucun cookie</strong>. Aucune donnée personnelle n'est collectée par l'éditrice.</p>
+            <p>Toutes les ressources de la page — police de caractères, icônes, images et animations — sont <strong>hébergées sur ce site</strong>. Votre navigateur ne contacte donc aucun serveur tiers lors de la consultation.</p>
+            <p>Seul l'hébergeur intervient : pour des raisons techniques et de sécurité, GitHub peut enregistrer des données de connexion (adresse IP, date, page consultée). Ce traitement relève de GitHub, Inc. — voir sa <a href="https://docs.github.com/site-policy/privacy-policies/github-privacy-statement" target="_blank" rel="noopener noreferrer">déclaration de confidentialité</a>.</p>
             <p>Conformément au RGPD, vous pouvez exercer vos droits d'accès, de rectification et d'effacement en écrivant à l'adresse de contact ci-dessus. Vous pouvez également introduire une réclamation auprès de la <a href="https://www.cnil.fr" target="_blank" rel="noopener noreferrer">CNIL</a>.</p>
 
-            <h2>5. Propriété intellectuelle et contenus de tiers</h2>
+            <h2><span class="pxi small pxi-folder" aria-hidden="true"></span>5. Propriété intellectuelle et crédits</h2>
             <p>Les textes originaux, la mise en page et le code source de ce site sont la propriété de l'éditrice. Toute reproduction ou réutilisation, totale ou partielle, sans autorisation préalable est interdite.</p>
-            <p>Les personnages, images, GIF et illustrations présentés à titre d'illustration restent la propriété de leurs auteurs et ayants droit respectifs — notamment <em>The Amazing Digital Circus</em> (Gooseworx / Glitch Productions), <em>JoJo's Bizarre Adventure</em> (Hirohiko Araki / Shueisha), les univers Minecraft (Mojang Studios / Microsoft) et Roblox (Roblox Corporation), ainsi que les créateurs des contenus communautaires cités.</p>
+            <p>Les éléments suivants appartiennent à leurs auteurs respectifs et sont utilisés à titre d'illustration, dans un cadre personnel et non commercial :</p>
+            <ul>
+                <li>le jeu d'icônes pixel <strong>Frutiger Aero</strong>, par itsfelpo — <a href="https://itsfelpo.itch.io/frutiger-aero" target="_blank" rel="noopener noreferrer">itsfelpo.itch.io/frutiger-aero</a> ;</li>
+                <li>la police d'affichage <strong>Minecraftia</strong> ;</li>
+                <li>les GIF animés décoratifs, issus de Tenor et de leurs créateurs d'origine ;</li>
+                <li>les personnages et illustrations cités — notamment <em>The Amazing Digital Circus</em> (Gooseworx / Glitch Productions), <em>JoJo's Bizarre Adventure</em> (Hirohiko Araki / Shueisha), les univers Minecraft (Mojang Studios / Microsoft) et Roblox (Roblox Corporation), ainsi que les créateurs des contenus communautaires mentionnés.</li>
+            </ul>
             <p>Ce site n'est <strong>ni affilié, ni approuvé, ni sponsorisé</strong> par ces sociétés ou ces auteurs. Toute demande de retrait émanant d'un ayant droit sera traitée dans les meilleurs délais à l'adresse de contact ci-dessus.</p>
 
-            <h2>6. Liens externes</h2>
-            <p>Ce site peut renvoyer vers des sites tiers. L'éditrice n'exerce aucun contrôle sur leur contenu et décline toute responsabilité à leur égard.</p>
+            <h2><span class="pxi small pxi-cursor" aria-hidden="true"></span>6. Liens externes</h2>
+            <p>Ce site renvoie vers des sites tiers (Roblox, Ko-fi, mes autres sites). L'éditrice n'exerce aucun contrôle sur le contenu des sites tiers et décline toute responsabilité à leur égard.</p>
 
-            <h2>7. Responsabilité</h2>
+            <h2><span class="pxi small pxi-cross" aria-hidden="true"></span>7. Responsabilité</h2>
             <p>Les contenus sont fournis à titre informatif et personnel, sans garantie d'exactitude ni de disponibilité. L'éditrice ne saurait être tenue responsable d'un dommage résultant de l'utilisation du site ou d'une indisponibilité de celui-ci.</p>
 
-            <h2>8. Droit applicable</h2>
+            <h2><span class="pxi small pxi-frame" aria-hidden="true"></span>8. Droit applicable</h2>
             <p>Les présentes mentions légales sont soumises au droit français. Tout litige relatif au site relève de la compétence des juridictions françaises.</p>
 
-            <p class="updated">Dernière mise à jour : 22 août 2026</p>
+            <p class="updated">Dernière mise à jour : 29 août 2026</p>
 
-        </div>
+        </section>
 
-        <a class="aero-button" data-style="steel" href="index.html">⬅️ Back</a>
+    </main>
 
-    </div>
+    <footer class="site-footer">
+        <a href="index.html">Retour à l'accueil</a>
+    </footer>
+
+</div>
 
 </body>
 </html>

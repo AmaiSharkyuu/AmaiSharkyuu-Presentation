@@ -1,95 +1,65 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <meta name="theme-color" content="#030d16">
     <meta name="color-scheme" content="dark">
-    <title>Interests - AmaiSharkyuu</title>
+    <title>Interests — AmaiSharkyuu</title>
+    <meta name="description" content="Games, YouTubers and anime AmaiSharkyuu is into.">
+    <link rel="icon" type="image/png" href="../assets/favicon.png">
     <link rel="stylesheet" href="../aero.css">
     <style>
-        /* ---- Éléments propres à la page Interests ---- */
-
-        .page-header h1 {
-            color: var(--violet);
-            text-shadow: 0 0 14px rgba(177, 140, 255, 0.5);
-        }
-
         .stack {
             display: flex;
             flex-direction: column;
             gap: 22px;
         }
 
-        .section-title {
-            color: var(--violet);
-        }
+        .bubble.tint-violet { background-color: rgba(45, 20, 78, 0.6);  border-color: rgba(177, 140, 255, 0.35); }
+        .bubble.tint-aqua   { background-color: rgba(6, 44, 62, 0.6);   border-color: rgba(79, 216, 255, 0.35); }
+        .bubble.tint-pink   { background-color: rgba(70, 16, 52, 0.6);  border-color: rgba(255, 122, 209, 0.35); }
 
-        /* Teinte propre à chaque bulle, dans l'esprit Aero */
-        .bubble.tint-violet {
-            background-color: rgba(45, 20, 78, 0.6);
-            border-color: rgba(177, 140, 255, 0.35);
-        }
-
-        .bubble.tint-aqua {
-            background-color: rgba(6, 44, 62, 0.6);
-            border-color: rgba(79, 216, 255, 0.35);
-        }
-
-        .bubble.tint-pink {
-            background-color: rgba(70, 16, 52, 0.6);
-            border-color: rgba(255, 122, 209, 0.35);
-        }
-
-        /* ---- Stickers ---- */
-
-        .stk-axolotl {
-            top: -26px;
-            right: -18px;
-            width: 56px;
-        }
-
-        .stk-nyan {
-            bottom: -16px;
-            right: -14px;
-            width: 64px;
-        }
-
-        .stk-parrot {
-            top: 6px;
-            left: -34px;
-            width: 34px;
-        }
-
-        .stk-elgato {
-            bottom: -20px;
-            left: -18px;
-            width: 58px;
-        }
-
-        /* Sur écran très étroit, les stickers qui débordent à gauche gênent :
-           on les ramène à l'intérieur. */
-        @media (max-width: 400px) {
-            .stk-parrot { left: -8px; opacity: 0.9; }
-        }
+        .stk-axolotl { top: -26px; right: -18px; width: 56px; }
+        .stk-nyan    { bottom: -16px; right: -14px; width: 64px; }
+        .stk-parrot  { top: 4px; left: -24px; width: 34px; }
+        .stk-elgato  { bottom: -20px; left: -18px; width: 58px; }
     </style>
 </head>
 <body>
 
-    <div class="container">
+<div class="page">
 
-        <div class="panel" data-accent="violet">
-            <img src="../Axolotl.webp" alt="Axolotl" class="sticker stk-axolotl" draggable="false">
+    <header class="site-head">
+        <h1 class="site-title">Interests</h1>
+    </header>
 
-            <header class="page-header">
-                <h1>✨ Interests</h1>
-                <a href="../" class="aero-button back-btn" data-style="violet">⬅️ Back</a>
-            </header>
+    <nav class="nav-col navbar panel" data-accent="aqua" aria-label="Site navigation">
+        <p class="panel-title"><span class="pxi pxi-menu" aria-hidden="true"></span>The navbar!!!</p>
+        <ul>
+            <li><a href="../"><span class="pxi pxi-home" aria-hidden="true"></span>Home</a></li>
+            <li><a href="../about/"><span class="pxi pxi-person" aria-hidden="true"></span>About me</a></li>
+            <li><a href="../Characters/"><span class="pxi pxi-heart" aria-hidden="true"></span>Characters</a></li>
+            <li><a href="index.html" aria-current="page"><span class="pxi pxi-star" aria-hidden="true"></span>Interests</a></li>
+            <li><a href="../HateList/"><span class="pxi pxi-cross" aria-hidden="true"></span>DNI list</a></li>
+            <li><a href="../socials/"><span class="pxi pxi-chat" aria-hidden="true"></span>Socials</a></li>
+            <li><a href="../mysites/"><span class="pxi pxi-folder" aria-hidden="true"></span>My sites</a></li>
+            <li><a href="../changelog/"><span class="pxi pxi-save" aria-hidden="true"></span>Changelog</a></li>
+            <li><a href="../credits/"><span class="pxi pxi-frame" aria-hidden="true"></span>Credits</a></li>
+        </ul>
+    </nav>
+
+    <main class="main-col">
+
+        <section class="panel" data-accent="violet">
+            <img src="../Axolotl.webp" alt="" class="sticker stk-axolotl" draggable="false">
+
+            <h2 class="panel-title"><span class="pxi pxi-star" aria-hidden="true"></span>Interests</h2>
 
             <div class="stack">
 
                 <div class="section-wrapper">
-                    <h2 class="section-title">My interest / Video games !!!</h2>
+                    <h3 class="section-title">Games I play</h3>
                     <div class="bubble scroll-md tint-violet">
                         <ul>
                             <li>TAMASHIKA</li>
@@ -100,12 +70,12 @@
                             <li>Mangas</li>
                         </ul>
                     </div>
-                    <img src="../nyan-cat.gif" alt="Nyan Cat" class="sticker stk-nyan" draggable="false">
+                    <img src="../nyan-cat.gif" alt="" class="sticker stk-nyan" draggable="false" loading="lazy">
                 </div>
 
                 <div class="section-wrapper">
-                    <img src="../parrotparty.gif" alt="Parrot Party" class="sticker stk-parrot" draggable="false">
-                    <h2 class="section-title">Youtubers I Watch!</h2>
+                    <img src="../parrotparty.gif" alt="" class="sticker stk-parrot" draggable="false" loading="lazy">
+                    <h3 class="section-title">YouTubers I watch</h3>
                     <div class="bubble scroll-md tint-aqua">
                         <ul>
                             <li>ThatMob</li>
@@ -127,23 +97,25 @@
                 </div>
 
                 <div class="section-wrapper">
-                    <h2 class="section-title">My Favorite Animes</h2>
+                    <h3 class="section-title">Favourite anime</h3>
                     <div class="bubble scroll-md tint-pink">
                         <ul>
                             <li>JoJo's Bizarre Adventure</li>
                         </ul>
                     </div>
-                    <img src="../elgatitolover.gif" alt="El Gato" class="sticker stk-elgato" draggable="false">
+                    <img src="../elgatitolover.gif" alt="" class="sticker stk-elgato" draggable="false" loading="lazy">
                 </div>
 
             </div>
-        </div>
+        </section>
 
-    </div>
+    </main>
 
     <footer class="site-footer">
         <a href="../mentions-legales.html">Mentions légales</a>
     </footer>
+
+</div>
 
 </body>
 </html>

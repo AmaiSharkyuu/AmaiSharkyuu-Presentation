@@ -1,83 +1,97 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <meta name="theme-color" content="#030d16">
     <meta name="color-scheme" content="dark">
-    <title>People I HATE - AmaiSharkyuu</title>
+    <title>DNI list — AmaiSharkyuu</title>
+    <meta name="description" content="Do not interact list. Read it before saying hi.">
+    <link rel="icon" type="image/png" href="../assets/favicon.png">
     <link rel="stylesheet" href="../aero.css">
     <style>
-        /* ---- Éléments propres à la page DNI ---- */
-
-        .page-header h1 {
-            color: var(--steel);
-            text-shadow: 0 0 14px rgba(147, 179, 198, 0.45);
-        }
-
-        .section-title {
-            color: var(--ruby);
-            text-shadow: 0 0 12px rgba(255, 107, 107, 0.4);
-        }
-
         .bubble.tint-warn {
             background-color: rgba(52, 12, 20, 0.6);
             border-color: rgba(255, 107, 107, 0.35);
         }
+        .bubble.tint-warn li { font-weight: 700; }
 
-        .bubble.tint-warn li {
-            font-weight: 700;
-        }
+        .section-title.warn { color: var(--ruby); text-shadow: 0 0 12px rgba(255, 107, 107, 0.4); }
 
-        /* ---- Stickers ---- */
-
-        .stk-emoji {
-            top: -18px;
-            right: -12px;
-            width: 46px;
-        }
-
+        /* Ces deux GIF ont un fond opaque clair : sur fond sombre ils
+           formaient un carré blanc bizarre. On les encadre pour que ça
+           ressemble à une petite photo posée, pas à un bug d'affichage. */
+        .stk-emoji,
         .stk-cat {
-            bottom: -20px;
-            left: -18px;
-            width: 56px;
+            padding: 3px;
+            background-color: rgba(3, 20, 32, 0.85);
+            border: 1px solid var(--glass-line);
+            border-top: 1px solid rgba(168, 240, 255, 0.5);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.55);
         }
+
+        .stk-emoji { top: -20px; right: -14px; width: 48px; }
+        .stk-cat   { bottom: -22px; left: -20px; width: 58px; }
     </style>
 </head>
 <body>
 
-    <div class="container">
+<div class="page">
 
-        <div class="panel" data-accent="steel">
+    <header class="site-head">
+        <h1 class="site-title">DNI list</h1>
+    </header>
 
-            <header class="page-header">
-                <h1>❌ DNI List</h1>
-                <a href="../" class="aero-button back-btn" data-style="steel">⬅️ Back</a>
-            </header>
+    <nav class="nav-col navbar panel" data-accent="aqua" aria-label="Site navigation">
+        <p class="panel-title"><span class="pxi pxi-menu" aria-hidden="true"></span>The navbar!!!</p>
+        <ul>
+            <li><a href="../"><span class="pxi pxi-home" aria-hidden="true"></span>Home</a></li>
+            <li><a href="../about/"><span class="pxi pxi-person" aria-hidden="true"></span>About me</a></li>
+            <li><a href="../Characters/"><span class="pxi pxi-heart" aria-hidden="true"></span>Characters</a></li>
+            <li><a href="../Interests/"><span class="pxi pxi-star" aria-hidden="true"></span>Interests</a></li>
+            <li><a href="index.html" aria-current="page"><span class="pxi pxi-cross" aria-hidden="true"></span>DNI list</a></li>
+            <li><a href="../socials/"><span class="pxi pxi-chat" aria-hidden="true"></span>Socials</a></li>
+            <li><a href="../mysites/"><span class="pxi pxi-folder" aria-hidden="true"></span>My sites</a></li>
+            <li><a href="../changelog/"><span class="pxi pxi-save" aria-hidden="true"></span>Changelog</a></li>
+            <li><a href="../credits/"><span class="pxi pxi-frame" aria-hidden="true"></span>Credits</a></li>
+        </ul>
+    </nav>
+
+    <main class="main-col">
+
+        <section class="panel" data-accent="ruby">
+            <h2 class="panel-title"><span class="pxi pxi-cross" aria-hidden="true"></span>DNI list</h2>
+
+            <p>Short list, but I mean every line of it. If any of this is you, please don't interact with me.</p>
 
             <div class="section-wrapper">
-                <h2 class="section-title">People I hate</h2>
+                <h3 class="section-title warn">Do not interact if you are</h3>
 
-                <img src="https://media.tenor.com/3ZWOaq1Y0nQAAAAj/cat.gif" alt="Cat" class="sticker stk-emoji" draggable="false">
+                <img src="../assets/cat-emoji.gif" alt="" class="sticker stk-emoji" draggable="false" loading="lazy">
 
                 <div class="bubble scroll-lg tint-warn">
                     <ul>
-                        <li>Basic stuff : Pdfiles, homophobics, racists, transphobics</li>
+                        <li>Basic stuff: pdfiles, homophobes, racists, transphobes</li>
                         <li>Toxic people</li>
-                        <li>People who do Illegal things</li>
+                        <li>People who do illegal things</li>
                     </ul>
                 </div>
 
-                <img src="https://media.tenor.com/GQAsycjoZG8AAAAj/scuba-scuba-cat.gif" alt="Cat" class="sticker stk-cat" draggable="false">
+                <img src="../assets/cat-scuba.gif" alt="" class="sticker stk-cat" draggable="false" loading="lazy">
             </div>
 
-        </div>
+            <hr class="aero-sep">
 
-    </div>
+            <p class="muted">Everyone else: hi, you're welcome here.</p>
+        </section>
+
+    </main>
 
     <footer class="site-footer">
         <a href="../mentions-legales.html">Mentions légales</a>
     </footer>
+
+</div>
 
 </body>
 </html>
