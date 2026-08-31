@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#030d16">
+    <meta name="color-scheme" content="dark">
+    <title>Badges — AmaiSharkyuu</title>
+    <meta name="description" content="Badge collecting on Roblox: Contributor in BoR, 5.5 million badges, Aero Badge List and my badge games.">
+    <link rel="icon" type="image/png" href="../assets/favicon.png">
+    <link rel="stylesheet" href="../aero.css">
+    <style>
+        .facts {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .facts li {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 15px;
+            font-weight: 600;
+            padding: 9px 0;
+            border-bottom: 1px solid rgba(130, 226, 255, 0.14);
+        }
+        .facts li:last-child { border-bottom: none; }
+
+        .count {
+            font-family: 'Minecraftia', 'Segoe UI', sans-serif;
+            font-size: 17px;
+            color: var(--lime);
+            text-shadow: 0 0 12px rgba(142, 245, 100, 0.5);
+        }
+
+        /* Cartes de jeu : l'image sert d'aperçu, cliquable en entier.
+           Deux colonnes, sinon cinq vignettes 16/9 empilées font une page
+           interminable. Une seule colonne quand c'est trop etroit. */
+        .game-list {
+            display: grid;
+            /* auto-fit plutôt qu'un nombre fixe : la grille repasse en une
+               colonne dès qu'une carte descendrait sous 220px, quelle que
+               soit la largeur de fenêtre. */
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 14px;
+        }
+
+        .game-card {
+            display: block;
+            text-decoration: none;
+            color: var(--text);
+
+            background-color: rgba(6, 40, 58, 0.55);
+            background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.1), rgba(0, 0, 0, 0.22));
+            border: 1px solid var(--glass-line);
+            border-top: 1px solid rgba(168, 240, 255, 0.45);
+            box-shadow: 0 8px 22px rgba(0, 0, 0, 0.45);
+            transition: box-shadow 0.15s ease, transform 0.1s ease;
+        }
+
+        .game-card:active { transform: translateY(1px); }
+
+        @media (hover: hover) {
+            .game-card:hover {
+                box-shadow: 0 8px 26px rgba(0, 0, 0, 0.5), 0 0 20px rgba(79, 216, 255, 0.35);
+            }
+        }
+
+        .game-card img {
+            display: block;
+            width: 100%;
+            height: auto;
+            aspect-ratio: 16 / 9;
+            object-fit: cover;
+            background-color: #000;
+            border-bottom: 1px solid var(--glass-line);
+        }
+
+        .game-body {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 13px 15px;
+        }
+
+        .game-body .label { min-width: 0; }
+
+        .game-body b {
+            display: block;
+            font-weight: 700;
+            color: var(--text-strong);
+        }
+
+        .game-body span {
+            font-size: 12.5px;
+            color: var(--text-dim);
+            overflow-wrap: anywhere;
+        }
+    </style>
+</head>
+<body>
+
+<div class="page">
+
+    <header class="site-head">
+        <h1 class="site-title">Badges</h1>
+    </header>
+
+    <nav class="nav-col navbar panel" data-accent="aqua" aria-label="Site navigation">
+        <p class="panel-title"><span class="pxi pxi-menu" aria-hidden="true"></span>The navbar!!!</p>
+        <ul>
+            <li><a href="../"><span class="pxi pxi-home" aria-hidden="true"></span>Home</a></li>
+            <li><a href="../about/"><span class="pxi pxi-person" aria-hidden="true"></span>About me</a></li>
+            <li><a href="index.html" aria-current="page"><span class="pxi pxi-target" aria-hidden="true"></span>Badges</a></li>
+            <li><a href="../Characters/"><span class="pxi pxi-heart" aria-hidden="true"></span>Characters</a></li>
+            <li><a href="../Interests/"><span class="pxi pxi-star" aria-hidden="true"></span>Interests</a></li>
+            <li><a href="../HateList/"><span class="pxi pxi-cross" aria-hidden="true"></span>DNI list</a></li>
+            <li><a href="../socials/"><span class="pxi pxi-chat" aria-hidden="true"></span>Socials</a></li>
+            <li><a href="../mysites/"><span class="pxi pxi-folder" aria-hidden="true"></span>My sites</a></li>
+            <li><a href="../changelog/"><span class="pxi pxi-save" aria-hidden="true"></span>Changelog</a></li>
+            <li><a href="../credits/"><span class="pxi pxi-frame" aria-hidden="true"></span>Credits</a></li>
+        </ul>
+    </nav>
+
+    <main class="main-col">
+
+        <section class="panel" data-accent="lime">
+            <h2 class="panel-title"><span class="pxi green pxi-target" aria-hidden="true"></span>Badge collecting</h2>
+
+            <p>Collecting Roblox badges is my main thing. I'm still active at it.</p>
+
+            <ul class="facts">
+                <li><span class="pxi small green pxi-target" aria-hidden="true"></span><span class="count">5,500,000+</span> badges</li>
+                <li><span class="pxi small green pxi-person" aria-hidden="true"></span>Contributor in <a href="https://www.roblox.com/communities/5587275/Badgers-of-Robloxia" target="_blank" rel="noopener noreferrer"><strong>BoR</strong> (Badgers of Robloxia)</a></li>
+                <li><span class="pxi small green pxi-check" aria-hidden="true"></span>Active collector</li>
+            </ul>
+        </section>
+
+        <section class="panel" data-accent="aqua">
+            <h2 class="panel-title"><span class="pxi pxi-save" aria-hidden="true"></span>Aero Badge List</h2>
+
+            <p>I made a Frutiger Aero version of Advanced Badge List. Sharp edges, no rounded corners, glossy glass UI, same as this site.</p>
+            <p>It covers the setup, the cursors for big badge games, and the FAQs.</p>
+
+            <ul class="link-list">
+                <li>
+                    <a class="link-row" href="https://github.com/AmaiSharkyuu/Aero-Badge-List" target="_blank" rel="noopener noreferrer">
+                        <span class="pxi pxi-folder" aria-hidden="true"></span>
+                        <span class="label">
+                            <b>Aero Badge List on GitHub</b>
+                            <span>github.com/AmaiSharkyuu/Aero-Badge-List</span>
+                        </span>
+                    </a>
+                </li>
+            </ul>
+
+            <p class="muted">It's a fork. The original Advanced Badge List is by BeeEngineOfGirl (meowbee_ on Discord), and it's maintained by dheeraj2008 (acetheawesome on Discord). Go give them credit too.</p>
+        </section>
+
+        <section class="panel" data-accent="pink">
+            <h2 class="panel-title"><span class="pxi pink pxi-play" aria-hidden="true"></span>My games</h2>
+
+            <p>The badge games I made. Click a thumbnail to open it on Roblox.</p>
+
+            <div class="game-list">
+
+                <a class="game-card" href="https://www.roblox.com/games/96889358005440/AmaiSharkyuus-Badge-Walk" target="_blank" rel="noopener noreferrer">
+                    <img src="../assets/game-badge-walk.png" width="768" height="432" alt="AmaiSharkyuu's Badge Walk thumbnail" loading="lazy" draggable="false">
+                    <span class="game-body">
+                        <span class="pxi pink pxi-target" aria-hidden="true"></span>
+                        <span class="label">
+                            <b>AmaiSharkyuu's Badge Walk</b>
+                            <span>A walk with valuables to pick up along the way</span>
+                        </span>
+                    </span>
+                </a>
+
+                <a class="game-card" href="https://www.roblox.com/games/120642028039038/AmaiSharkyuus-Badge-Chain-Hub" target="_blank" rel="noopener noreferrer">
+                    <img src="../assets/game-badge-chain-hub.png" width="768" height="432" alt="AmaiSharkyuu's Badge Chain Hub thumbnail" loading="lazy" draggable="false">
+                    <span class="game-body">
+                        <span class="pxi pink pxi-folder" aria-hidden="true"></span>
+                        <span class="label">
+                            <b>AmaiSharkyuu's Badge Chain Hub</b>
+                            <span>A chain hub that links to other chains too. Tens of thousands of badges</span>
+                        </span>
+                    </span>
+                </a>
+
+                <a class="game-card" href="https://www.roblox.com/games/131254054272754/AmaiSharkyuus-Badger" target="_blank" rel="noopener noreferrer">
+                    <img src="../assets/game-badger.png" width="768" height="432" alt="AmaiSharkyuu's Badger thumbnail" loading="lazy" draggable="false">
+                    <span class="game-body">
+                        <span class="pxi pink pxi-star" aria-hidden="true"></span>
+                        <span class="label">
+                            <b>AmaiSharkyuu's Badger</b>
+                            <span>My badger game, built on Shayph's Badger Kit</span>
+                        </span>
+                    </span>
+                </a>
+
+                <a class="game-card" href="https://www.roblox.com/games/13489965810/Amais-Badge-Walk-Hub" target="_blank" rel="noopener noreferrer">
+                    <img src="../assets/game-walk-hub.png" width="768" height="432" alt="Amai's Badge Walk Hub thumbnail" loading="lazy" draggable="false">
+                    <span class="game-body">
+                        <span class="pxi pink pxi-home" aria-hidden="true"></span>
+                        <span class="label">
+                            <b>Amai's Badge Walk Hub</b>
+                            <span>A hub with lots of badge walks in it, not just mine</span>
+                        </span>
+                    </span>
+                </a>
+
+                <a class="game-card" href="https://www.roblox.com/games/119970968453109/Welcome-Badges-Games" target="_blank" rel="noopener noreferrer">
+                    <img src="../assets/game-welcome-badges.png" width="768" height="432" alt="Welcome Badges Games thumbnail" loading="lazy" draggable="false">
+                    <span class="game-body">
+                        <span class="pxi pink pxi-check" aria-hidden="true"></span>
+                        <span class="label">
+                            <b>Welcome Badges Games (WBG)</b>
+                            <span>Badges to pick up on your way in</span>
+                        </span>
+                    </span>
+                </a>
+
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="site-footer">
+        <a href="../mentions-legales.html">Mentions légales</a>
+    </footer>
+
+</div>
+
+</body>
+</html>
