@@ -598,3 +598,21 @@ hr.aero-sep {
 @media (prefers-reduced-motion: reduce) {
     * { transition: none !important; animation: none !important; }
 }
+
+/* ------------------------------------------------------------
+   Fond sous-marin pixel art (ocean.js, activé par "fond" dans site.json)
+   ------------------------------------------------------------ */
+.ocean-bg {
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 0;
+    pointer-events: none;
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+}
+
+/* Le canvas remplace le dégradé et le voile de bulles */
+.has-ocean body { background-image: none; }
+.has-ocean body::before { display: none; }

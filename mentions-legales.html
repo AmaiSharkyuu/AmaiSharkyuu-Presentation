@@ -56,21 +56,7 @@
         <p class="site-subtitle">amaisharkyuu.amaicraft.fr</p>
     </header>
 
-    <nav class="nav-col navbar panel" data-accent="aqua" aria-label="Navigation du site">
-        <p class="panel-title"><span class="pxi pxi-menu" aria-hidden="true"></span>The navbar!!!</p>
-        <ul>
-            <li><a href="index.html"><span class="pxi pxi-home" aria-hidden="true"></span>Home</a></li>
-            <li><a href="about/"><span class="pxi pxi-person" aria-hidden="true"></span>About me</a></li>
-            <li><a href="badges/"><span class="pxi pxi-target" aria-hidden="true"></span>Badges</a></li>
-            <li><a href="Characters/"><span class="pxi pxi-heart" aria-hidden="true"></span>Characters</a></li>
-            <li><a href="Interests/"><span class="pxi pxi-star" aria-hidden="true"></span>Interests</a></li>
-            <li><a href="HateList/"><span class="pxi pxi-cross" aria-hidden="true"></span>DNI list</a></li>
-            <li><a href="socials/"><span class="pxi pxi-chat" aria-hidden="true"></span>Socials</a></li>
-            <li><a href="mysites/"><span class="pxi pxi-folder" aria-hidden="true"></span>My sites</a></li>
-            <li><a href="changelog/"><span class="pxi pxi-save" aria-hidden="true"></span>Changelog</a></li>
-            <li><a href="credits/"><span class="pxi pxi-frame" aria-hidden="true"></span>Credits</a></li>
-        </ul>
-    </nav>
+    <nav class="nav-col navbar panel" data-accent="aqua" aria-label="Navigation du site" data-site="nav"></nav>
 
     <main class="main-col">
 
@@ -83,7 +69,7 @@
                 <p>
                     <strong>Éditeur / Directrice de la publication :</strong> AmaiSharkyuu (pseudonyme)<br>
                     <strong>Statut :</strong> personne physique éditant un site à titre non professionnel et non lucratif<br>
-                    <strong>Contact :</strong> <a href="mailto:Contact@amaicraft.fr">Contact@amaicraft.fr</a>
+                    <strong>Contact :</strong> <a data-site="email"></a>
                 </p>
                 <p class="muted">En application de l'article 6 III 2 de la LCEN, l'éditrice non professionnelle a choisi de rester anonyme auprès du public. Ses coordonnées complètes sont détenues par l'hébergeur et sont communicables sur réquisition de l'autorité judiciaire.</p>
             </div>
@@ -140,5 +126,6 @@
 
 </div>
 
+<script src="site.js"></script>
 </body>
 </html>

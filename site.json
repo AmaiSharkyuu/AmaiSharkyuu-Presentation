@@ -1,0 +1,38 @@
+{
+    "fond": "ocean",
+
+    "navbar": {
+        "titre": "The navbar!!!",
+        "liens": [
+            { "texte": "Home",       "lien": "",           "icone": "home" },
+            { "texte": "About me",   "lien": "about/",     "icone": "person" },
+            { "texte": "Badges",     "lien": "badges/",    "icone": "target" },
+            { "texte": "Characters", "lien": "Characters/", "icone": "heart" },
+            { "texte": "Interests",  "lien": "Interests/", "icone": "star" },
+            { "texte": "DNI list",   "lien": "HateList/",  "icone": "cross" },
+            { "texte": "Socials",    "lien": "socials/",   "icone": "chat" },
+            { "texte": "My sites",   "lien": "mysites/",   "icone": "folder" },
+            { "texte": "Changelog",  "lien": "changelog/", "icone": "save" },
+            { "texte": "Credits",    "lien": "credits/",   "icone": "frame" }
+        ]
+    },
+
+    "infos": [
+        { "texte": "23/12/2000",          "icone": "star",  "couleur": "" },
+        { "texte": "Pronouns: any",       "icone": "check", "couleur": "green" },
+        { "texte": "Trans girl, lesbian", "icone": "heart", "couleur": "pink" },
+        { "texte": "Autistic",            "icone": "star",  "couleur": "green" }
+    ],
+
+    "email": "Contact@amaicraft.fr",
+
+    "reseaux": [
+        { "nom": "Roblox", "detail": "AmaiSharkyuu", "lien": "https://www.roblox.com/users/1957141708/profile", "icone": "person", "couleur": "" },
+        { "nom": "Ko-fi",  "detail": "ko-fi.com/amaicraft, buy me a coffee", "lien": "https://ko-fi.com/amaicraft", "icone": "heart", "couleur": "pink" },
+        { "nom": "Email",  "detail": "Contact@amaicraft.fr", "lien": "mailto:Contact@amaicraft.fr", "icone": "check", "couleur": "green" }
+    ],
+
+    "piedDePage": [
+        { "texte": "Mentions légales", "lien": "mentions-legales.html" }
+    ]
+}
