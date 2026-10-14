@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="noindex">
+    <title>404 · Page not found</title>
+    <!-- Page introuvable : on part vers la page 404 commune des sites amaicraft.fr
+         (repo AmaiSharkyuu/404), en lui donnant l'adresse tapée pour qu'elle propose la bonne page.
+         Pas de redirection sous /404/ : si la page commune manque, on évite une boucle infinie. -->
+    <script>
+        if (!/^\/404(\/|$)/.test(location.pathname)) {
+            location.replace("https://www.amaicraft.fr/404/?from=" + encodeURIComponent(location.href));
+        }
+    </script>
+</head>
+<body style="font-family: monospace; background: #000; color: #fff; text-align: center; padding: 40px 16px;">
+    <p>This page does not exist.</p>
+    <p><a href="https://www.amaicraft.fr/404/" style="color: #55ffff;">Go to the server list</a></p>
+</body>
+</html>
